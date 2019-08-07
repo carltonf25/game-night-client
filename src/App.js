@@ -8,7 +8,7 @@ import routes from "./router";
 import { useRoutes, useRedirect } from "hookrouter";
 import "./App.css";
 
-function App() {
+const App = () => {
   const routeResult = useRoutes(routes);
   const [event, setEvent] = useState({});
   const [user, setUser] = useState({});
@@ -22,6 +22,6 @@ function App() {
       </div>
     </AppContext.Provider>
   );
-}
+};
 
 export default App;

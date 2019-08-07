@@ -10,14 +10,15 @@ const EventCodeWrapper = styled.div`
   color: #16f5b3;
   margin: 2em;
   label {
-    background: #272236;
-    font-size: 1.75em;
+    color: #16f5b3;
+    font-size: 1.5em;
   }
 
   input {
     background: none;
     border: 1px solid #16f5b3;
-    font-size: 1.5em;
+    font-size: 1.3em;
+    width: 30vh;
     -webkit-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
     -moz-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
     box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
@@ -25,10 +26,14 @@ const EventCodeWrapper = styled.div`
     color: #fefefe;
   }
 
+  p.error {
+    color: tomato;
+  }
+
   button {
     background: #16f5b3;
     padding: 15px;
-    font-size: 1.5em;
+    font-size: 1.3em;
     border: 1px solid #165b3;
     -webkit-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
     -moz-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
@@ -52,11 +57,13 @@ const EventCodeInput = () => {
     let res = await fetch(`http://localhost:8000/api/events/${eventCode}`);
 
     let eventData = await res.json();
-    if (eventData) {
+    if (eventData.error) {
+      // no event found. set error
+      setError(eventData.error);
+    } else {
+      // found an eevent
       await setEvent(eventData);
       navigate(`/events/${eventCode}`);
-    } else {
-      setError(eventData.error);
     }
   };
   return (
@@ -64,7 +71,18 @@ const EventCodeInput = () => {
       <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
         The easiest event management platform for organizers and attendees
       </h1>
-      {error && <p>{error}</p>}
+      {error && (
+        <div
+          style={{
+            background: `tomato`,
+            padding: `1em`,
+            margin: `1em 0`,
+            color: `#fefefe`
+          }}
+        >
+          <p>{error}</p>
+        </div>
+      )}
       <label htmlFor="event-code">Enter event code:</label>
       <div
         style={{

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../img/text-logo.svg";
+import { A } from "hookrouter";
 
 const HeaderWrapper = styled.header`
   background: #261a30;
@@ -43,7 +44,9 @@ const HeaderWrapper = styled.header`
 
 const Header = () => (
   <HeaderWrapper>
-    <img src={logo} />
+    <A href="/">
+      <img src={logo} />
+    </A>
     <nav>
       <a href="#0">Log in</a>
       <a href="#0">Sign up</a>
