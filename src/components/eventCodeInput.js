@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../AppContext";
+import { navigate } from "hookrouter";
 require("dotenv").config();
 
 const EventCodeWrapper = styled.div`
@@ -44,17 +45,18 @@ const EventCodeWrapper = styled.div`
 const EventCodeInput = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState("");
-  const { setEvent } = useContext(AppContext);
+  const { setEvent, event } = useContext(AppContext);
 
   const getEvent = async () => {
-    let res = await fetch(`http://localhost:8000/api/events/1`);
+    let eventCode = inputValue;
+    let res = await fetch(`http://localhost:8000/api/events/${eventCode}`);
 
-    let responseData = await res.json();
-    if (responseData) {
-      console.log(responseData);
-      setEvent(responseData);
+    let eventData = await res.json();
+    if (eventData) {
+      await setEvent(eventData);
+      navigate(`/events/${eventCode}`);
     } else {
-      setError(responseData.error);
+      setError(eventData.error);
     }
   };
   return (
@@ -79,7 +81,14 @@ const EventCodeInput = () => {
           }}
           value={inputValue}
         />
-        <button onClick={() => getEvent()}>Join Event</button>
+        <button
+          onClick={e => {
+            e.preventDefault();
+            getEvent();
+          }}
+        >
+          Join Event
+        </button>
       </div>
     </EventCodeWrapper>
   );
