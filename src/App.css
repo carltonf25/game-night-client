@@ -1,40 +1,20 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
 .App {
+  margin: 0;
   display: grid;
   grid-template-areas:
     "header header header"
     "main main main"
     "footer footer footer";
   grid-template-columns: 15% 1fr 15%;
-  grid-template-rows: 10vh 82vh 8vh;
+  grid-template-rows: auto auto auto;
   background: #272236;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

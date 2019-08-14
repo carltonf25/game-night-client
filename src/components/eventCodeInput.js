@@ -9,6 +9,7 @@ const EventCodeWrapper = styled.div`
   grid-column: 2/3;
   color: #16f5b3;
   margin: 2em;
+  min-height: 80vh;
   label {
     color: #16f5b3;
     font-size: 1.5em;
@@ -19,25 +20,21 @@ const EventCodeWrapper = styled.div`
     border: 1px solid #16f5b3;
     font-size: 1.3em;
     width: 30vh;
-    -webkit-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
-    -moz-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
-    box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
+    -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
     padding: 15px;
     color: #fefefe;
   }
 
-  p.error {
-    color: tomato;
-  }
-
   button {
     background: #16f5b3;
-    padding: 15px;
+    padding: 16px;
+    border: none;
     font-size: 1.3em;
-    border: 1px solid #165b3;
-    -webkit-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
-    -moz-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
-    box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
+    -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
     text-transform: uppercase;
     transition: 0.2s ease-in-out;
     :hover {
@@ -47,6 +44,18 @@ const EventCodeWrapper = styled.div`
   }
 `;
 
+const Error = styled.div`
+  background: #ff8e74;
+  padding: 15px;
+  font-weight: 600;
+  margin: 1em 0;
+  color: #fefefe;
+  border-left: 5px solid red;
+  -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+  -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+`;
+
 const EventCodeInput = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState("");
@@ -54,6 +63,10 @@ const EventCodeInput = () => {
 
   const getEvent = async () => {
     let eventCode = inputValue;
+    if (eventCode === "") {
+      setError("Please enter a code");
+    }
+
     let res = await fetch(`http://localhost:8000/api/events/${eventCode}`);
 
     let eventData = await res.json();
@@ -72,16 +85,9 @@ const EventCodeInput = () => {
         The easiest event management platform for organizers and attendees
       </h1>
       {error && (
-        <div
-          style={{
-            background: `tomato`,
-            padding: `1em`,
-            margin: `1em 0`,
-            color: `#fefefe`
-          }}
-        >
+        <Error>
           <p>{error}</p>
-        </div>
+        </Error>
       )}
       <label htmlFor="event-code">Enter event code:</label>
       <div
