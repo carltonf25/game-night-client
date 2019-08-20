@@ -84,7 +84,7 @@ const Section = styled.div`
 `;
 
 const Error = styled.div`
-  grid-row: 2/3;
+  grid-column: 2/3;
   background: #ff8e74;
   padding: 15px;
   font-weight: 600;
