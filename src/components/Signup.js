@@ -96,8 +96,22 @@ const Error = styled.div`
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
 `;
 
+const Success = styled.div`
+  grid-column: 2/3;
+  background: #07ca79;
+  padding: 15px;
+  font-weight: 600;
+  margin: 1em 0;
+  color: #fefefe;
+  border-left: 5px solid #10814d;
+  -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+  -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+`;
+
 const Signup = () => {
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser } = useContext(AppContext);
@@ -119,8 +133,11 @@ const Signup = () => {
     if (res.data.error) {
       setError(res.data.error);
     } else if (res.data.user) {
+      setSuccess(`Account successfully created! Logging you in..`);
       setUser(res.data.user);
-      navigate("/dashboard");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2500);
     }
   };
 
@@ -132,6 +149,11 @@ const Signup = () => {
           <Error>
             <p>{error}</p>
           </Error>
+        )}
+        {success && (
+          <Success>
+            <p>{success}</p>
+          </Success>
         )}
         <form>
           <label htmlFor="email">Email:</label>
