@@ -144,7 +144,7 @@ const Event = () => {
       {modal && <RsvpModal modal={modal} closeModal={() => setModal(false)} />}
       <EventWrapper>
         <div className="event-heading">
-          <img src={event.img || placeholder} />
+          <img src={event.header_image || placeholder} />
           <div className="date-section">
             <h3>
               {event.date} at {event.location || "TBD"}

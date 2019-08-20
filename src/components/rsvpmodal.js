@@ -15,7 +15,7 @@ const Overlay = styled.div`
   grid-template-columns: 10vh auto 10vh;
   grid-template-rows: 10vh 1fr 20vh;
   .modal {
-    background: #261a2f;
+    background: #272236;
     grid-column: 2/3;
     grid-row: 2/3;
     padding: 1em;

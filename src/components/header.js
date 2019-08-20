@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import logo from "../img/text-logo.svg";
-import { A } from "hookrouter";
+import { A, navigate } from "hookrouter";
+import { AppContext } from "../AppContext";
 
 const HeaderWrapper = styled.header`
   background: #261a30;
@@ -73,28 +74,43 @@ const HeaderWrapper = styled.header`
     }
   }
 `;
-const Header = () => (
-  <HeaderWrapper>
-    <A href="/">
-      <img src={logo} />
-    </A>
-    <nav>
-      <A href="/login">Log in</A>
-      <A href="/signup">Sign up</A>
-    </nav>
-    <div
-      className="hamburger"
-      id="transform-button"
-      onclick={() => {
-        const el = document.getElementById("transform-button");
-        el.classList.toggle("change");
-      }}
-    >
-      <div class="bar1" />
-      <div class="bar2" />
-      <div class="bar3" />
-    </div>
-  </HeaderWrapper>
-);
+const Header = ({ isNavOpen, setNavOpen }) => {
+  const { user, setUser } = useContext(AppContext);
+  return (
+    <HeaderWrapper>
+      <A href="/">
+        <img src={logo} />
+      </A>
+      <nav>
+        {user ? (
+          <A
+            href="/"
+            onClick={e => {
+              e.preventDefault();
+              setUser(null);
+            }}
+          >
+            Log out
+          </A>
+        ) : (
+          <>
+            <A href="/login">Log in</A>
+            <A href="/signup">Sign up</A>
+          </>
+        )}
+      </nav>
+      <div
+        className="hamburger"
+        onClick={() => {
+          setNavOpen(!isNavOpen);
+        }}
+      >
+        <div className="bar1" />
+        <div className="bar2" />
+        <div className="bar3" />
+      </div>
+    </HeaderWrapper>
+  );
+};
 
 export default Header;

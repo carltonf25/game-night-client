@@ -42,6 +42,17 @@ const EventCodeWrapper = styled.div`
       background: #17b180;
     }
   }
+
+  @media screen and (max-width: 760px) {
+    .input-button-wrapper {
+      display: grid;
+      grid-template-rows: auto auto;
+      button {
+        margin-top: 1.5rem;
+        grid-row: 2;
+      }
+    }
+  }
 `;
 
 const Error = styled.div`
@@ -73,8 +84,11 @@ const EventCodeInput = () => {
     if (eventData.error) {
       // no event found. set error
       setError(eventData.error);
+    } else if (inputValue === "") {
+      // event input blank. set error.
+      setError(`Please enter an event code.`);
     } else {
-      // found an eevent
+      // found an event. navigate to event page route
       await setEvent(eventData);
       navigate(`/events/${eventCode}`);
     }
@@ -91,6 +105,7 @@ const EventCodeInput = () => {
       )}
       <label htmlFor="event-code">Enter event code:</label>
       <div
+        className="input-button-wrapper"
         style={{
           width: `auto`,
           marginTop: `1em`

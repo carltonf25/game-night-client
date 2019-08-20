@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
 require("dotenv").config();
@@ -10,7 +11,9 @@ const PageWrapper = styled.div`
   color: #16f5b3;
   margin: 2em;
   min-height: 80vh;
-
+  }
+  @media screen and (max-width: 760px) {
+    grid-column: 1/-1;
   }
 `;
 
@@ -30,23 +33,23 @@ const Section = styled.div`
   }
   form {
     grid-column: 2/3;
-      label {
-        color: #16f5b3;
-        font-size: 1.5em;
-      }
+    label {
+      color: #16f5b3;
+      font-size: 1.5em;
+    }
 
-      input {
-        background: none;
-        border: 1px solid #16f5b3;
-        font-size: 1.3em;
-        -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-        -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-        box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-        padding: 15px;
-        color: #fefefe;
-        margin: 1em 0;
-        width: 70%;
-      }
+    input {
+      background: none;
+      border: 1px solid #16f5b3;
+      font-size: 1.3em;
+      -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      padding: 15px;
+      color: #fefefe;
+      margin: 1em 0;
+      width: 70%;
+    }
   }
   table {
     grid-column: 1/-1;
@@ -71,9 +74,10 @@ const Section = styled.div`
       background: #17b180;
     }
 
-  @media screen and (max-width: 760px) {
-    table {
-      width: 100%;
+    @media screen and (max-width: 760px) {
+      table {
+        width: 100%;
+      }
     }
   }
 `;
@@ -95,6 +99,29 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser } = useContext(AppContext);
+
+  const logIn = async (email, password) => {
+    // check that values were entered
+    if (email === "") {
+      setError(`Please enter an email address`);
+    } else if (password === "") {
+      setError(`A password is required`);
+    }
+
+    const res = await axios.post(`http://localhost:8000/auth/login`, {
+      email,
+      password
+    });
+
+    console.log(res);
+
+    if (res.data.error) {
+      setError(res.data.error);
+    } else if (res.data.user) {
+      setUser(res.data.user);
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <PageWrapper>
@@ -133,6 +160,7 @@ const Login = () => {
           <button
             onClick={e => {
               e.preventDefault();
+              logIn(email, password);
             }}
           >
             Log in
