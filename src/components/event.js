@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import RsvpModal from "./rsvpmodal";
 import { AppContext } from "../AppContext";
 import { useRedirect } from "hookrouter";
 
 import placeholder from "../img/placeholder.png";
+import Axios from "axios";
 
 const Section = styled.div`
   background: #261a30;
@@ -113,24 +115,24 @@ const GuestTable = styled.table`
 `;
 
 const Event = () => {
-  const { user, event } = useContext(AppContext);
+  const { user, event, setEvent } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const [guests, setGuests] = useState([{ name: "Test" }]);
 
   const fetchGuests = async () => {
-    let res = await fetch(
-      `http://localhost:8000/api/events/${event.id}/guests`
+    let res = await axios.get(
+      `http://localhost:8000/api/events/${event.event_code}/guests`
     );
-    const guests = await res.json();
 
-    if (guests) {
-      setGuests(guests);
+    if (res.data.guests) {
+      setGuests(res.data.guests);
     } else {
       console.log("no guests found");
     }
   };
 
   useEffect(() => {
+    setEvent(event);
     fetchGuests();
   }, []);
 
@@ -144,12 +146,12 @@ const Event = () => {
       {modal && <RsvpModal modal={modal} closeModal={() => setModal(false)} />}
       <EventWrapper>
         <div className="event-heading">
-          <img src={event.header_image || placeholder} />
+          <img src={event.header_image} />
           <div className="date-section">
             <h3>
               {event.date} at {event.location || "TBD"}
             </h3>
-            <h2>{event ? event.title : "Placeholder title"}</h2>
+            <h2>{event.title}</h2>
           </div>
           <button
             onClick={e => {

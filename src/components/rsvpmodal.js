@@ -47,18 +47,12 @@ const RsvpModal = ({ closeModal, modal }) => {
 
   const addGuest = async () => {
     let data = { guests: [name] };
-    const res = await fetch(
-      `http://localhost:8000/api/events/${event.id || 1}/guests`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          body: JSON.stringify(data)
-        }
-      }
+
+    const res = await axios.post(
+      `http://localhost:8000/api/events/${event.event_code || 1}/guests`,
+      data
     );
-    let test = await res;
-    console.log(test);
+    console.log(res);
   };
 
   const props = useSpring({
@@ -90,6 +84,7 @@ const RsvpModal = ({ closeModal, modal }) => {
               onClick={e => {
                 e.preventDefault();
                 addGuest();
+                closeModal();
               }}
             >
               RSVP
