@@ -14,6 +14,7 @@ const Overlay = styled.div`
   display: grid;
   grid-template-columns: 10vh auto 10vh;
   grid-template-rows: 10vh 1fr 20vh;
+
   .modal {
     background: #272236;
     grid-column: 2/3;
@@ -55,14 +56,18 @@ const RsvpModal = ({ closeModal, modal }) => {
     console.log(res);
   };
 
-  const props = useSpring({
-    to: { marginRight: `0px` },
-    from: { marginRight: `-50px` }
+  const slideIn = useSpring({
+    from: {
+      transform: `translate3d( 300px, 0, 0)`
+    },
+    to: {
+      transform: `translate3d(0,0,0)`
+    }
   });
 
   return (
     <Overlay>
-      <animated.div className="modal" style={props}>
+      <animated.div className="modal" style={slideIn}>
         <a onClick={closeModal}>✖</a>
         <div
           style={{
