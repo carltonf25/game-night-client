@@ -1,13 +1,11 @@
 import React from "react";
 
-import Header from "./components/header";
-import Login from "./components/login";
-import Signup from "./components/signup";
-import Footer from "./components/footer";
-import Event from "./components/event";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Event from "./components/Event";
 import EventsDashboard from "./components/EventsDashboard";
 import EventBuilder from "./components/EventBuilder";
-import EventCodeInput from "./components/eventCodeInput";
+import EventCodeInput from "./components/EventCodeInput";
 
 const routes = {
   "/": () => <EventCodeInput />,

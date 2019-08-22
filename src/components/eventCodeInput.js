@@ -1,71 +1,9 @@
 import React, { useState, useContext } from "react";
-import styled from "styled-components";
+import { Error } from "./styled-components/common";
+import { EventCodeWrapper } from "./styled-components/EventCodePage";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
 require("dotenv").config();
-
-const EventCodeWrapper = styled.div`
-  grid-area: main;
-  grid-column: 2/3;
-  color: #16f5b3;
-  margin: 2em;
-  min-height: 80vh;
-  label {
-    color: #16f5b3;
-    font-size: 1.5em;
-  }
-
-  input {
-    background: none;
-    border: 1px solid #16f5b3;
-    font-size: 1.3em;
-    width: 30vh;
-    -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-    -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-    box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-    padding: 15px;
-    color: #fefefe;
-  }
-
-  button {
-    background: #16f5b3;
-    padding: 16px;
-    border: none;
-    font-size: 1.3em;
-    -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-    -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-    box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-    text-transform: uppercase;
-    transition: 0.2s ease-in-out;
-    :hover {
-      cursor: pointer;
-      background: #17b180;
-    }
-  }
-
-  @media screen and (max-width: 760px) {
-    .input-button-wrapper {
-      display: grid;
-      grid-template-rows: auto auto;
-      button {
-        margin-top: 1.5rem;
-        grid-row: 2;
-      }
-    }
-  }
-`;
-
-const Error = styled.div`
-  background: #ff8e74;
-  padding: 15px;
-  font-weight: 600;
-  margin: 1em 0;
-  color: #fefefe;
-  border-left: 5px solid red;
-  -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-`;
 
 const EventCodeInput = () => {
   const [inputValue, setInputValue] = useState("");

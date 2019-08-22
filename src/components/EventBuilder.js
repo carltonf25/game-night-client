@@ -1,59 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import styled from "styled-components";
 import { useSpring, animated } from "react-spring";
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 10vh 1fr 10vh;
-  width: 100vw;
-`;
-
-const Section = styled.div`
-  background: #261a30;
-  padding: 15px;
-  -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  margin: 2em;
-  grid-column: 2/3;
-  display: grid;
-  grid-template-columns: 10% 1fr 10%;
-  grid-template-rows: auto;
-  color: #fefefe;
-
-  h1 {
-    grid-column: 2/3;
-    justify-self: center;
-    border-bottom: 2px solid #16f5b3;
-    padding-bottom: 10px;
-  }
-
-  @media screen and (max-width: 760px) {
-    grid-column: 1/-1;
-  }
-`;
-
-const ChecklistItem = styled.div`
-  color: #261a2f;
-  background: #c2f7e7;
-  padding: 15px;
-  grid-column: 2/3;
-  margin: 10px;
-  -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-`;
-
-const EditButton = styled.button`
-  border: none;
-  background: none;
-  transition: 0.2s ease;
-  text-transform: uppercase;
-  cursor: pointer;
-  :hover {
-    transform: scale(1.02);
-  }
-`;
+import { Wrapper, Section } from "./styled-components/common";
+import { ChecklistItem, EditButton } from "./styled-components/EventBuilder.js";
 
 const EventBuilder = () => {
   const slideIn = useSpring({
@@ -68,7 +16,13 @@ const EventBuilder = () => {
   return (
     <animated.div style={slideIn}>
       <Wrapper>
-        <Section>
+        <Section
+          style={{
+            gridColumn: `2/3`,
+            display: `grid`,
+            gridTemplateColumns: `10% 1fr 10%`
+          }}
+        >
           <h1>New Event</h1>
           <ChecklistItem>
             <h2>Title</h2>

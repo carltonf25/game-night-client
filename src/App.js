@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import BurgerNav from "./components/BurgerNav";
-import EventCodeInput from "./components/eventCodeInput";
-import Event from "./components/event";
 import { AppContext } from "./AppContext";
 import routes from "./router";
 import { useRoutes, useRedirect } from "hookrouter";
