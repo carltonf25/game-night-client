@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 10vh 1fr 10vh;
+  grid-template-columns: 10% 1fr 10%;
   width: 100vw;
 `;
 

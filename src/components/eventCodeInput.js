@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Error } from "./styled-components/common";
+import { Error, Success } from "./styled-components/common";
 import { EventCodeWrapper } from "./styled-components/EventCodePage";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
@@ -8,9 +8,15 @@ require("dotenv").config();
 const EventCodeInput = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const { setEvent, event } = useContext(AppContext);
 
+  const clearFlashMessages = () => {
+    setError("");
+    setSuccess("");
+  };
   const getEvent = async () => {
+    clearFlashMessages();
     let eventCode = inputValue;
     if (eventCode === "") {
       setError("Please enter a code");
@@ -27,8 +33,11 @@ const EventCodeInput = () => {
       setError(`Please enter an event code.`);
     } else {
       // found an event. navigate to event page route
-      await setEvent(eventData);
-      navigate(`/events/${eventCode}`);
+      await setEvent(eventData.event);
+      setSuccess(eventData.success);
+      setTimeout(() => {
+        navigate(`/events/${eventCode}`);
+      }, 1500);
     }
   };
   return (
@@ -36,6 +45,11 @@ const EventCodeInput = () => {
       <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
         The easiest event management platform for organizers and attendees
       </h1>
+      {success && (
+        <Success>
+          <p>{success}</p>
+        </Success>
+      )}
       {error && (
         <Error>
           <p>{error}</p>

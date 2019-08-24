@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.header`
   display: grid;
   grid-template-areas: "logo open open nav";
   grid-template-columns: auto 40% 1fr;
+  max-height: 60px;
   }
 
   img {

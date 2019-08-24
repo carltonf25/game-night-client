@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BurgerNav from "./components/BurgerNav";
@@ -11,13 +11,17 @@ import "./App.css";
 const App = () => {
   const routeResult = useRoutes(routes);
   const [event, setEvent] = useState({});
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const [isNavOpen, setNavOpen] = useState(false);
   const navAnimation = useSpring({
     display: isNavOpen ? `` : `none`,
     transform: isNavOpen ? `translate3d(0,0,0)` : `translate3d(100%,0, 0)`
   });
+
+  useEffect(() => {
+    setEvent({ event_code: `121146` });
+  }, []);
 
   return (
     <AppContext.Provider value={{ event, setEvent, user, setUser }}>

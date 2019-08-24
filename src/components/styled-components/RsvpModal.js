@@ -8,8 +8,8 @@ export const Overlay = styled.div`
   left: 0;
   position: fixed;
   display: grid;
-  grid-template-columns: 10vh auto 10vh;
-  grid-template-rows: 10vh 1fr 20vh;
+  grid-template-columns: 20vh auto 20vh;
+  grid-template-rows: 30vh 1fr 30vh;
 
   .modal {
     background: #272236;
@@ -29,6 +29,42 @@ export const Overlay = styled.div`
       cursor: pointer;
       :hover {
         color: #17b180;
+      }
+    }
+    label,
+    input {
+      display: block;
+    }
+    label {
+      color: #16f5b3;
+      font-size: 1.5em;
+    }
+    input {
+      background: none;
+      border: 1px solid #16f5b3;
+      font-size: 1.3em;
+      width: 30vw;
+      -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      padding: 15px;
+      color: #fefefe;
+      margin: 1em 0;
+    }
+    button {
+      background: #16f5b3;
+      padding: 16px;
+      border: none;
+      font-size: 1.3em;
+      -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+      text-transform: uppercase;
+      transition: 0.2s ease-in-out;
+      margin: 1em 0;
+      :hover {
+        cursor: pointer;
+        background: #17b180;
       }
     }
     @media screen and (max-width: 760px) {

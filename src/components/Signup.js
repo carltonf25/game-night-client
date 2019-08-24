@@ -13,7 +13,13 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const { setUser } = useContext(AppContext);
 
+  const clearFlashMessages = () => {
+    setError("");
+    setSuccess("");
+  };
+
   const handleSubmit = async (email, password) => {
+    clearFlashMessages();
     // check that values are entered
     if (email === "") {
       setError(`Please enter an email address`);
@@ -34,7 +40,7 @@ const Signup = () => {
       setUser(res.data.user);
       setTimeout(() => {
         navigate("/dashboard");
-      }, 2500);
+      }, 1500);
     }
   };
 

@@ -6,42 +6,32 @@ export const EventWrapper = styled.div`
   grid-template-columns: 10vw auto auto 10vw;
   grid-column: 2/3;
 
-  .event-heading {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-row-gap: 3em;
-    grid-column-gap: 3em;
-    img {
-      width: 100%;
-      max-width: 760px;
-      grid-column: 1/2;
-      grid-row: 1;
-    }
-    .date-section {
-      padding: 15px;
-      grid-row: 1;
-      grid-column: 2/3;
-    }
-    button {
-      background: #16f5b3;
-      border-radius: 5px;
-      font-size: 1.2em;
-      padding: 10px;
-      grid-row: 2;
-      grid-column: 2/3;
-      width: 60%;
-      margin-bottom: 2em;
-      justify-self: center;
-      border: none;
-      -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-      -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-      box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-      transition: 0.2s ease;
-      :hover {
-        cursor: pointer;
-        transform: scale(1.02);
-        background: #17b180;
-      }
+  img {
+    width: 100%;
+    margin: 0;
+    max-height: 180px;
+  }
+  .date-rsvp-section {
+    padding: 20px;
+  }
+  button {
+    background: #16f5b3;
+    border-radius: 5px;
+    font-size: 1.2em;
+    padding: 10px 50px;
+    grid-row: 2;
+    grid-column: 2/3;
+    margin-bottom: 2em;
+    justify-self: center;
+    border: none;
+    -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    transition: 0.2s ease;
+    :hover {
+      cursor: pointer;
+      transform: scale(1.02);
+      background: #17b180;
     }
   }
   @media screen and (max-width: 760px) {
@@ -64,15 +54,20 @@ export const EventWrapper = styled.div`
   }
 `;
 
-export const GuestTable = styled.table`
-  border: 1px solid rgba(220, 220, 220, 0.5);
-  width: 50%;
+export const Table = styled.table`
+  width: 70%;
   -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+  border-collapse: collapse;
 
   td,
   th {
     padding: 1em;
+    background: #272236;
+    border: 1px solid grey;
+  }
+  th {
+    background: #4a4267;
   }
 `;

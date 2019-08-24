@@ -11,4 +11,6 @@ export const FooterWrapper = styled.footer`
   -webkit-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
   -moz-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
   box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);
+  max-height: 60px;
+  bottom: 0;
 `;

@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Section } from "./styled-components/common";
-import { EventWrapper, GuestTable } from "./styled-components/Event";
+import { EventWrapper } from "./styled-components/Event";
 
 import axios from "axios";
+import GuestTable from "./GuestTable";
 import RsvpModal from "./RsvpModal";
 import { AppContext } from "../AppContext";
 
@@ -37,23 +38,32 @@ const Event = () => {
     <>
       {modal && <RsvpModal modal={modal} closeModal={() => setModal(false)} />}
       <EventWrapper>
-        <div className="event-heading">
-          <img src={event.header_image} />
-          <div className="date-section">
+        <Section
+          style={{
+            padding: 0
+          }}
+        >
+          <img
+            src={
+              event.header_image ||
+              `https://www.adventuresnt.com.au/wp-content/uploads/2015/03/banner-placeholder.jpg`
+            }
+          />
+          <div className="date-rsvp-section">
             <h3>
               {event.date} at {event.location || "TBD"}
             </h3>
             <h2>{event.title}</h2>
+            <button
+              onClick={e => {
+                e.preventDefault();
+                setModal(true);
+              }}
+            >
+              RSVP
+            </button>
           </div>
-          <button
-            onClick={e => {
-              e.preventDefault();
-              setModal(true);
-            }}
-          >
-            RSVP
-          </button>
-        </div>
+        </Section>
         <Section>
           <div className="description-date">
             <div
@@ -83,20 +93,7 @@ const Event = () => {
               guests[2].name
             } are going`}</p>
           ) : null}
-          <GuestTable>
-            <tbody>
-              <tr>
-                <th>Guest:</th>
-                <th>RSVP</th>
-              </tr>
-              {guests.map(g => (
-                <tr key={`guest-${g.id}`}>
-                  <td>{g.name}</td>
-                  <td>✅</td>
-                </tr>
-              ))}
-            </tbody>
-          </GuestTable>
+          <GuestTable guests={guests} />
         </Section>
       </EventWrapper>
     </>

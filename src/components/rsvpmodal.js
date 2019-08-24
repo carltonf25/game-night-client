@@ -7,10 +7,11 @@ import axios from "axios";
 const RsvpModal = ({ closeModal, modal }) => {
   const { event } = useContext(AppContext);
   const [name, setName] = useState("");
+  const [bringing, setBringing] = useState("");
   const [guests, setGuests] = useState([]);
 
   const addGuest = async () => {
-    let data = { guests: [name] };
+    let data = { guests: { name: [name], bringing: bringing } };
 
     const res = await axios.post(
       `http://localhost:8000/api/events/${event.event_code || 1}/guests`,
@@ -41,12 +42,18 @@ const RsvpModal = ({ closeModal, modal }) => {
           <h2>RSVP to this Game Night:</h2>
           <form>
             <label for="name">Name:</label>
-            <br />
             <input
               type="text"
               name="name"
               value={name}
               onChange={e => setName(e.target.value)}
+            />
+            <label for="bringing">(Optional) I'm bringing..</label>
+            <input
+              type="text"
+              name="bringing"
+              value={bringing}
+              onChange={e => setBringing(e.target.value)}
             />
             <button
               onClick={e => {
