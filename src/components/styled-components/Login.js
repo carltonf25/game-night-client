@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PageWrapper = styled.div`
-grid-area: main;
+grid-area: route;
 grid-column: 2/3;
 color: #16f5b3;
 margin: 2em;

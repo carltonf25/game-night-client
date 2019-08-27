@@ -6,16 +6,16 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background: #272236;
 }
 .App {
   margin: 0;
-  height: 100vh;
+  width: 100%;
   display: grid;
   grid-template-areas:
     "header header header"
-    "main main main"
+    "route route route"
     "footer footer footer";
-  grid-template-columns: 15% 1fr 15%;
-  grid-template-rows: 10% 1fr 10%;
-  background: #272236;
+  grid-template-columns: 10% 1fr 10%;
+  grid-template-rows: 8vh 1fr 8vh;
 }

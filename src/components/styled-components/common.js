@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 
 export const Section = styled.div`
   background: #261a30;
+  grid-column: 2/3;
   padding: 15px;
   -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);

@@ -25,15 +25,12 @@ const EventsDashboard = () => {
   });
 
   return (
-    <Wrapper>
-      <Section
-        style={{
-          display: `grid`,
-          gridTemplateColumns: `10% 1fr 10%`,
-          gridTemplateRows: `10% 1fr 10%`,
-          gridColumn: `2/3`
-        }}
-      >
+    <Wrapper
+      style={{
+        minHeight: `84vh`
+      }}
+    >
+      <Section style={{}}>
         <h1>Upcoming Events</h1>
         <div
           style={{

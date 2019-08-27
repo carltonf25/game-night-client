@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const EventCodeWrapper = styled.div`
-  grid-area: main;
+  grid-area: route;
   grid-column: 2/3;
   color: #16f5b3;
   margin: 2em;
-  min-height: 80vh;
+  min-height: 77.5vh;
   label {
     color: #16f5b3;
     font-size: 1.5em;

@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   position: fixed;
   display: grid;
   grid-template-columns: 20vh auto 20vh;
-  grid-template-rows: 30vh 1fr 30vh;
+  grid-template-rows: 20vh 1fr 20vh;
 
   .modal {
     background: #272236;
