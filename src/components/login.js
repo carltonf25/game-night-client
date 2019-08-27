@@ -26,11 +26,11 @@ const Login = () => {
       password
     });
 
-    console.log(res);
-
     if (res.data.error) {
       setError(res.data.error);
     } else if (res.data.user) {
+      let userString = JSON.stringify(res.data.user);
+      localStorage.setItem("user", userString);
       setUser(res.data.user);
       navigate("/dashboard");
     }

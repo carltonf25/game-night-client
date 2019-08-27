@@ -17,6 +17,7 @@ const Header = ({ isNavOpen, setNavOpen }) => {
             href="/"
             onClick={e => {
               e.preventDefault();
+              localStorage.removeItem("user");
               setUser(null);
             }}
           >
