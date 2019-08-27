@@ -1,32 +1,32 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Section } from "./styled-components/common";
 import { EventWrapper } from "./styled-components/Event";
+import { useRedirect, navigate } from "hookrouter";
 
 import axios from "axios";
 import GuestTable from "./GuestTable";
 import RsvpModal from "./RsvpModal";
 import { AppContext } from "../AppContext";
 
-const Event = () => {
+const Event = ({ eventCode }) => {
   const { user, event, setEvent } = useContext(AppContext);
   const [modal, setModal] = useState(false);
   const [guests, setGuests] = useState([{ name: "Test" }]);
 
-  const fetchGuests = async () => {
-    let res = await axios.get(
-      `http://localhost:8000/api/events/${event.event_code}/guests`
-    );
+  const fetchEvent = async () => {
+    let res = await axios.get(`http://localhost:8000/api/events/${eventCode}`);
 
-    if (res.data.guests) {
-      setGuests(res.data.guests);
+    if (res.data.event) {
+      setEvent(res.data.event);
+      setGuests(res.data.event.guests);
     } else {
-      console.log("no guests found");
+      navigate("/");
     }
   };
 
   useEffect(() => {
-    setEvent(event);
-    fetchGuests();
+    fetchEvent();
+    console.log(event);
   }, []);
 
   const parseDate = datetime => {
@@ -44,6 +44,7 @@ const Event = () => {
           }}
         >
           <img
+            alt="placeholder"
             src={
               event.header_image ||
               `https://www.adventuresnt.com.au/wp-content/uploads/2015/03/banner-placeholder.jpg`
@@ -88,11 +89,6 @@ const Event = () => {
         </Section>
         <Section>
           <h2>Who's going?</h2>
-          {guests.length >= 3 ? (
-            <p>{`${guests[0].name}, ${guests[1].name}, and ${
-              guests[2].name
-            } are going`}</p>
-          ) : null}
           <GuestTable guests={guests} />
         </Section>
       </EventWrapper>

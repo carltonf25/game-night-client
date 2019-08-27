@@ -9,7 +9,7 @@ import EventCodeInput from "./components/EventCodeInput";
 
 const routes = {
   "/": () => <EventCodeInput />,
-  "/events/:id": () => <Event />,
+  "/events/:eventCode": ({ eventCode }) => <Event eventCode={eventCode} />,
   "/login": () => <Login />,
   "/signup": () => <Signup />,
   "/dashboard": () => <EventsDashboard />,
