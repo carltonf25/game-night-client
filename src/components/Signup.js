@@ -36,8 +36,11 @@ const Signup = () => {
     if (res.data.error) {
       setError(res.data.error);
     } else if (res.data.user) {
-      setSuccess(`Account successfully created! Logging you in..`);
+      let userString = JSON.stringify(res.data.user);
+      localStorage.setItem("user", userString);
       setUser(res.data.user);
+      // flash success message and log into dashboard page
+      setSuccess(`Account successfully created! Logging you in..`);
       setTimeout(() => {
         navigate("/dashboard");
       }, 1500);
