@@ -1,15 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { Wrapper, Section } from "./styled-components/common";
-import { ChecklistItem, EditButton } from "./styled-components/EventBuilder.js";
+import { EditButton } from "./styled-components/EventBuilder.js";
+
+import ChecklistItem from "./ChecklistItem";
 
 const EventBuilder = () => {
   const slideIn = useSpring({
     from: {
-      transform: `translate3d(100%,0, 0)`
+      transform: `translate3d(100%,0, 0)`,
+      opacity: 0
     },
     to: {
-      transform: `translate3d(0,0,0)`
+      transform: `translate3d(0,0,0)`,
+      opacity: 1
     }
   });
 
@@ -23,26 +27,26 @@ const EventBuilder = () => {
             gridTemplateColumns: `10% 1fr 10%`
           }}
         >
-          <h1>New Event</h1>
-          <ChecklistItem>
-            <h2>Title</h2>
-            <EditButton>Edit</EditButton>
-            <p>Board Games and Beer</p>
-          </ChecklistItem>
-          <ChecklistItem>
-            <h2>Description</h2>
-            <EditButton>Edit</EditButton>
-            <p>
-              This week, we'll be playing Risk, and drinking heavily as we watch
-              our friendships melt away
-            </p>
-          </ChecklistItem>
-          <ChecklistItem>
-            <h2>When & Where?</h2>
-          </ChecklistItem>
-          <ChecklistItem>
-            <h2>Code</h2>
-          </ChecklistItem>
+          <h1
+            style={{
+              gridColumn: `2/3`,
+              textAlign: `center`
+            }}
+          >
+            New Event
+          </h1>
+          <ChecklistItem heading="Title" defaultVal="Title" />
+          <ChecklistItem heading="Description" defaultVal="Description" />
+          <ChecklistItem
+            heading="When & Where?"
+            defaultVal="When & Where?"
+            type="date"
+          />
+          <button
+            style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
+          >
+            Publish
+          </button>
         </Section>
       </Wrapper>
     </animated.div>
