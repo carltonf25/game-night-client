@@ -24,15 +24,26 @@ const Event = ({ eventCode }) => {
     }
   };
 
+  const formatDate = dateString => {
+    const date = new Date(dateString);
+    return date.toLocaleString("default", {
+      month: "short",
+      weekday: "long",
+      day: "numeric"
+    });
+  };
+
+  const formatTime = dateString => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString("default", {
+      hour: "numeric"
+    });
+  };
+
   useEffect(() => {
     fetchEvent();
     console.log(event);
   }, []);
-
-  const parseDate = datetime => {
-    let d = datetime.split(/[- :]/);
-    return new Date(Date.UTC(d[0], d[1] - 1, d[2], d[3], d[4], d[5]));
-  };
 
   return (
     <>
@@ -52,7 +63,7 @@ const Event = ({ eventCode }) => {
           />
           <div className="date-rsvp-section">
             <h3>
-              {event.date} at {event.location || "TBD"}
+              {formatDate(event.date)} at {event.location || "TBD"}
             </h3>
             <h2>{event.title}</h2>
             <button
@@ -83,7 +94,11 @@ const Event = ({ eventCode }) => {
               }}
             >
               <h3>Date & Time:</h3>
-              <p>{event.date ? event.date : "12/31 @ 7pm"}</p>
+              <p>
+                {event.date
+                  ? `${formatDate(event.date)} @ ${formatTime(event.date)}`
+                  : "12/31 @ 7pm"}
+              </p>
             </div>
           </div>
         </Section>

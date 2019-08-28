@@ -7,14 +7,14 @@ import axios from "axios";
 const RsvpModal = ({ closeModal, modal }) => {
   const { event } = useContext(AppContext);
   const [name, setName] = useState("");
-  const [bringing, setBringing] = useState("");
+  const [bringing, setBringing] = useState([]);
   const [guests, setGuests] = useState([]);
 
   const addGuest = async () => {
-    let data = { guests: { name: [name], bringing: bringing } };
+    let data = { guests: { name: [name], bringing: [bringing] } };
 
     const res = await axios.post(
-      `http://localhost:8000/api/events/${event.event_code || 1}/guests`,
+      `http://localhost:8000/api/events/${event.event_code}/guests`,
       data
     );
     console.log(res);
