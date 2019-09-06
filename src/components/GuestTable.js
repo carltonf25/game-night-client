@@ -7,12 +7,10 @@ const GuestTable = ({ guests }) => (
     <tbody>
       <tr>
         <th>Guest</th>
-        <th>Bringing</th>
       </tr>
       {guests.map(g => (
         <tr key={`guest-${g.id}`}>
           <td>{g.name}</td>
-          <td>{g.bringing || `just bringing myself`}</td>
         </tr>
       ))}
     </tbody>

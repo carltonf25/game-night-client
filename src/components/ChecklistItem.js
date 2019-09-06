@@ -4,7 +4,14 @@ import {
   EditButton
 } from "./styled-components/EventBuilder.js";
 
-const ChecklistItem = ({ heading, defaultVal, type }) => {
+const ChecklistItem = ({
+  item,
+  heading,
+  defaultVal,
+  type,
+  event,
+  setEvent
+}) => {
   const [editing, setEditing] = useState(false);
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(defaultVal);
@@ -33,6 +40,9 @@ const ChecklistItem = ({ heading, defaultVal, type }) => {
       <EditButton
         onClick={e => {
           e.preventDefault();
+          if (editing === true) {
+            setEvent(event => ({ ...event, [item]: value }));
+          }
           setEditing(!editing);
         }}
       >

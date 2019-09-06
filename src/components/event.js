@@ -42,12 +42,18 @@ const Event = ({ eventCode }) => {
 
   useEffect(() => {
     fetchEvent();
-    console.log(event);
+    console.log("re-fetching");
   }, []);
 
   return (
     <>
-      {modal && <RsvpModal modal={modal} closeModal={() => setModal(false)} />}
+      {modal && (
+        <RsvpModal
+          modal={modal}
+          fetchEvent={fetchEvent}
+          closeModal={() => setModal(false)}
+        />
+      )}
       <EventWrapper>
         <Section
           style={{

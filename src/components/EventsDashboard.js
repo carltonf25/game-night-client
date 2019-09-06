@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Section, Wrapper } from "./styled-components/common";
 import { CreateButton } from "./styled-components/EventsDashboard";
+import EventCard from "./EventCard";
 import axios from "axios";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
@@ -11,18 +12,17 @@ const EventsDashboard = () => {
 
   const getEvents = async () => {
     const res = await axios.get(
-      `http://localhost:8000/users/${user.id}/events`
+      `http://localhost:8000/api/users/${user.id}/events`
     );
 
-    if (events) {
-      setEvents(events);
-      console.log(events);
+    if (res.data.events) {
+      setEvents(res.data.events);
     }
   };
 
   useEffect(() => {
     getEvents();
-  });
+  }, []);
 
   return (
     <Wrapper
@@ -30,7 +30,12 @@ const EventsDashboard = () => {
         minHeight: `84vh`
       }}
     >
-      <Section style={{}}>
+      <Section
+        style={{
+          display: `grid`,
+          gridTemplateColumns: `1/-1`
+        }}
+      >
         <h1>Upcoming Events</h1>
         <div
           style={{
@@ -46,15 +51,10 @@ const EventsDashboard = () => {
             Create
           </CreateButton>
           {events.length > 0 ? (
-            <ul>
-              {events.map(e => (
-                <li>{e.title}</li>
-              ))}
-            </ul>
+            events.map(e => <EventCard {...e} />)
           ) : (
             <p
               style={{
-                gridColumn: `2/3`,
                 justifySelf: `center`
               }}
             >

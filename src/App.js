@@ -11,7 +11,9 @@ import "./App.css";
 const App = () => {
   const routeResult = useRoutes(routes);
   const [event, setEvent] = useState({});
-  const [user, setUser] = useState(localStorage.getItem("user") || null);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
 
   const [isNavOpen, setNavOpen] = useState(false);
   const navAnimation = useSpring({

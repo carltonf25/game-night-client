@@ -1,31 +1,41 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
+import { Error } from "./styled-components/common";
 import { useSpring, animated } from "react-spring";
 import { Overlay } from "./styled-components/RsvpModal";
 import axios from "axios";
 
-const RsvpModal = ({ closeModal, modal }) => {
+const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
   const { event } = useContext(AppContext);
   const [name, setName] = useState("");
   const [bringing, setBringing] = useState([]);
   const [guests, setGuests] = useState([]);
+  const [error, setError] = useState("");
 
   const addGuest = async () => {
-    let data = { guests: { name: [name], bringing: [bringing] } };
+    let data = { guests: [{ name: name }] };
 
     const res = await axios.post(
       `http://localhost:8000/api/events/${event.event_code}/guests`,
       data
     );
-    console.log(res);
+
+    if (res.data.added === true) {
+      fetchEvent();
+      closeModal();
+    } else {
+      setError("Unable to add guest");
+    }
   };
 
   const slideIn = useSpring({
     from: {
-      transform: `translate3d( 300px, 0, 0)`
+      opacity: 0,
+      transform: `translate3d(100px, 0, 0)`
     },
     to: {
-      transform: `translate3d(0,0,0)`
+      opacity: 1,
+      transform: `translate3d(0, 0, 0)`
     }
   });
 
@@ -40,6 +50,11 @@ const RsvpModal = ({ closeModal, modal }) => {
           }}
         >
           <h2>RSVP to this Game Night:</h2>
+          {error && (
+            <Error>
+              <p>{error}</p>
+            </Error>
+          )}
           <form>
             <label for="name">Name:</label>
             <input
@@ -48,18 +63,10 @@ const RsvpModal = ({ closeModal, modal }) => {
               value={name}
               onChange={e => setName(e.target.value)}
             />
-            <label for="bringing">(Optional) I'm bringing..</label>
-            <input
-              type="text"
-              name="bringing"
-              value={bringing}
-              onChange={e => setBringing(e.target.value)}
-            />
             <button
               onClick={e => {
                 e.preventDefault();
                 addGuest();
-                closeModal();
               }}
             >
               RSVP

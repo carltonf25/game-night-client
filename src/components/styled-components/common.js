@@ -3,6 +3,7 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 10% 1fr 10%;
   width: 100vw;
+  padding: 0;
 
   input {
     background: none;

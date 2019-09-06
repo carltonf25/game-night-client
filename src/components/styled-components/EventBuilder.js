@@ -13,6 +13,7 @@ export const ChecklistItem = styled.div`
 
 export const EditButton = styled.button`
   border: none;
+  font-size: 10px;
   background: none;
   transition: 0.2s ease;
   text-transform: uppercase;

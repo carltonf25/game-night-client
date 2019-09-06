@@ -1,11 +1,36 @@
 import React, { useState, useContext, useEffect } from "react";
+import { AppContext } from "../AppContext";
 import { useSpring, animated } from "react-spring";
-import { Wrapper, Section } from "./styled-components/common";
-import { EditButton } from "./styled-components/EventBuilder.js";
+import { Wrapper, Section, Error } from "./styled-components/common";
+import axios from "axios";
+import { A, navigate } from "hookrouter";
 
 import ChecklistItem from "./ChecklistItem";
-
 const EventBuilder = () => {
+  const { user } = useContext(AppContext);
+
+  const [error, setError] = useState("");
+  const [event, setEvent] = useState({
+    title: "",
+    description: "",
+    date: "",
+    location: "",
+    user_id: user.id,
+    header_image: "http://via.placeholder.com/640x360"
+  });
+
+  const createEvent = async () => {
+    const res = await axios.post(`http://localhost:8000/api/events`, event);
+
+    console.log(res);
+
+    if (res.data.created === true) {
+      navigate("/dashboard");
+    } else {
+      setError("Error creating the event.");
+    }
+  };
+
   const slideIn = useSpring({
     from: {
       transform: `translate3d(100%,0, 0)`,
@@ -27,6 +52,7 @@ const EventBuilder = () => {
             gridTemplateColumns: `10% 1fr 10%`
           }}
         >
+          <A href="/dashboard">Back to Dashboard</A>
           <h1
             style={{
               gridColumn: `2/3`,
@@ -35,15 +61,36 @@ const EventBuilder = () => {
           >
             New Event
           </h1>
-          <ChecklistItem heading="Title" defaultVal="Title" />
-          <ChecklistItem heading="Description" defaultVal="Description" />
+          {error && (
+            <Error>
+              <p>{error}</p>
+            </Error>
+          )}
           <ChecklistItem
+            item="title"
+            setEvent={setEvent}
+            heading="Title"
+            defaultVal="Title"
+          />
+          <ChecklistItem
+            item="description"
+            setEvent={setEvent}
+            heading="Description"
+            defaultVal="Description"
+          />
+          <ChecklistItem
+            item="date"
+            setEvent={setEvent}
             heading="When & Where?"
             defaultVal="When & Where?"
             type="date"
           />
           <button
             style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
+            onClick={e => {
+              e.preventDefault();
+              createEvent();
+            }}
           >
             Publish
           </button>
