@@ -4,8 +4,8 @@ import { A, navigate } from "hookrouter";
 import { AppContext } from "../AppContext";
 import { HeaderWrapper } from "./styled-components/Header";
 
-const Header = ({ isNavOpen, setNavOpen }) => {
-  const { user, setUser } = useContext(AppContext);
+const Header = ({ logOut, isNavOpen, setNavOpen }) => {
+  const { user } = useContext(AppContext);
   return (
     <HeaderWrapper>
       <A href="/">
@@ -13,16 +13,18 @@ const Header = ({ isNavOpen, setNavOpen }) => {
       </A>
       <nav>
         {user ? (
-          <A
-            href="/"
-            onClick={e => {
-              e.preventDefault();
-              localStorage.removeItem("user");
-              setUser(null);
-            }}
-          >
-            Log out
-          </A>
+          <>
+            <A href="/dashboard">Dashboard</A>
+            <A
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                logOut();
+              }}
+            >
+              Log out
+            </A>
+          </>
         ) : (
           <>
             <A href="/login">Log in</A>

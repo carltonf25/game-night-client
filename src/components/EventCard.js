@@ -9,12 +9,12 @@ const CardWrapper = styled.div`
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   margin: 2em;
   color: #fefefe;
-  width: 20vw;
   height: 20vh;
   border-radius: 5%;
   grid-column: auto;
   transition: 0.2s ease;
   cursor: pointer;
+  grid-column: 2/3;
 
   :hover {
     transform: scale(1.03);

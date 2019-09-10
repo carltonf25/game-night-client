@@ -3,7 +3,7 @@ import { NavWrapper } from "./styled-components/BurgerNav";
 import { A } from "hookrouter";
 import { animated } from "react-spring";
 
-const BurgerNav = ({ style, setNavOpen, isNavOpen }) => {
+const BurgerNav = ({ user, logOut, style, setNavOpen, isNavOpen }) => {
   return (
     <animated.div style={style}>
       <NavWrapper>
@@ -16,24 +16,50 @@ const BurgerNav = ({ style, setNavOpen, isNavOpen }) => {
         >
           ✖
         </a>
-        <A
-          className="nav-link"
-          href="/login"
-          onClick={() => {
-            setNavOpen(!isNavOpen);
-          }}
-        >
-          Log in
-        </A>
-        <A
-          className="nav-link"
-          href="/signup"
-          onClick={() => {
-            setNavOpen(!isNavOpen);
-          }}
-        >
-          Sign up
-        </A>
+        {user ? (
+          <>
+            <A
+              href="/dashboard"
+              onClick={() => {
+                setNavOpen(!isNavOpen);
+              }}
+            >
+              Dashboard
+            </A>
+            <A
+              className="nav-link"
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                logOut();
+                setNavOpen(!isNavOpen);
+              }}
+            >
+              Log out
+            </A>
+          </>
+        ) : (
+          <>
+            <A
+              className="nav-link"
+              href="/login"
+              onClick={() => {
+                setNavOpen(!isNavOpen);
+              }}
+            >
+              Log in
+            </A>
+            <A
+              className="nav-link"
+              href="/signup"
+              onClick={() => {
+                setNavOpen(!isNavOpen);
+              }}
+            >
+              Sign up
+            </A>
+          </>
+        )}
         <A
           className="nav-link"
           href="/"

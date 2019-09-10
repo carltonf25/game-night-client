@@ -21,17 +21,28 @@ const App = () => {
     transform: isNavOpen ? `translate3d(0,0,0)` : `translate3d(100%,0, 0)`
   });
 
+  const logOut = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
   useEffect(() => {}, []);
 
   return (
     <AppContext.Provider value={{ event, setEvent, user, setUser }}>
       <BurgerNav
+        logOut={() => logOut()}
+        user={user}
         style={navAnimation}
         setNavOpen={setNavOpen}
         isNavOpen={isNavOpen}
       />
       <div className="App">
-        <Header setNavOpen={setNavOpen} isNavOpen={isNavOpen} />
+        <Header
+          logOut={() => logOut()}
+          setNavOpen={setNavOpen}
+          isNavOpen={isNavOpen}
+        />
         {routeResult}
         <Footer />
       </div>

@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   grid-template-columns: 10% 1fr 10%;
   width: 100vw;
   padding: 0;
+  z-index: 1;
 
   input {
     background: none;

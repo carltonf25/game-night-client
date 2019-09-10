@@ -25,45 +25,41 @@ const EventsDashboard = () => {
   }, []);
 
   return (
-    <Wrapper
+    <Section
       style={{
-        minHeight: `84vh`
+        display: `grid`,
+        gridTemplateColumns: `10% 1fr 10%`,
+        gridColumn: `2/3`
       }}
     >
-      <Section
+      <h1>Upcoming Events</h1>
+      <div
         style={{
-          display: `grid`,
-          gridTemplateColumns: `1/-1`
+          gridRow: `2/3`,
+          gridColumn: `2/3`
         }}
       >
-        <h1>Upcoming Events</h1>
-        <div
-          style={{
-            gridRow: `2/3`
+        <CreateButton
+          onClick={e => {
+            e.preventDefault();
+            navigate(`/create`);
           }}
         >
-          <CreateButton
-            onClick={e => {
-              e.preventDefault();
-              navigate(`/create`);
+          Create
+        </CreateButton>
+        {events.length > 0 ? (
+          events.map(e => <EventCard {...e} />)
+        ) : (
+          <p
+            style={{
+              justifySelf: `center`
             }}
           >
-            Create
-          </CreateButton>
-          {events.length > 0 ? (
-            events.map(e => <EventCard {...e} />)
-          ) : (
-            <p
-              style={{
-                justifySelf: `center`
-              }}
-            >
-              No upcoming events.
-            </p>
-          )}
-        </div>
-      </Section>
-    </Wrapper>
+            No upcoming events.
+          </p>
+        )}
+      </div>
+    </Section>
   );
 };
 
