@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Header from "./components/Header.js";
-import Footer from "./components/Footer.js";
-import BurgerNav from "./components/BurgerNav.js";
-import { AppContext } from "./AppContext.js";
-import routes from "./router";
+import Header from "/components/Header";
+import Footer from "/components/Footer";
+import BurgerNav from "/components/BurgerNav";
+import { AppContext } from "/AppContext";
+import routes from "/router";
 import { useRoutes, useRedirect } from "hookrouter";
 import { useSpring } from "react-spring";
-import "./App.css";
+import "/App.css";
 
 const App = () => {
   const routeResult = useRoutes(routes);
