@@ -28,10 +28,13 @@ const Signup = () => {
     }
 
     // valid email and password, submit data to signup
-    let res = await axios.post(`http://localhost:8000/signup`, {
-      email,
-      password
-    });
+    let res = await axios.post(
+      `https://damp-falls-69999.herokuapp.com/signup`,
+      {
+        email,
+        password
+      }
+    );
 
     if (res.data.error) {
       setError(res.data.error);

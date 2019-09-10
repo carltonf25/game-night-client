@@ -20,7 +20,10 @@ const EventBuilder = () => {
   });
 
   const createEvent = async () => {
-    const res = await axios.post(`http://localhost:8000/api/events`, event);
+    const res = await axios.post(
+      `https://damp-falls-69999.herokuapp.com/api/events`,
+      event
+    );
 
     console.log(res);
 

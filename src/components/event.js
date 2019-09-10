@@ -14,7 +14,9 @@ const Event = ({ eventCode }) => {
   const [guests, setGuests] = useState([{ name: "Test" }]);
 
   const fetchEvent = async () => {
-    let res = await axios.get(`http://localhost:8000/api/events/${eventCode}`);
+    let res = await axios.get(
+      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`
+    );
 
     if (res.data.event) {
       setEvent(res.data.event);

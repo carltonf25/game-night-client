@@ -21,10 +21,13 @@ const Login = () => {
       setError(`A password is required`);
     }
 
-    const res = await axios.post(`http://localhost:8000/auth/login`, {
-      email,
-      password
-    });
+    const res = await axios.post(
+      `https://damp-falls-69999.herokuapp.com/auth/login`,
+      {
+        email,
+        password
+      }
+    );
 
     if (res.data.error) {
       setError(res.data.error);

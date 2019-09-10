@@ -22,7 +22,9 @@ const EventCodeInput = () => {
       setError("Please enter a code");
     }
 
-    let res = await fetch(`http://localhost:8000/api/events/${eventCode}`);
+    let res = await fetch(
+      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`
+    );
 
     let eventData = await res.json();
     if (eventData.error) {

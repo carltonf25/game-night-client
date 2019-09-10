@@ -12,7 +12,7 @@ const EventsDashboard = () => {
 
   const getEvents = async () => {
     const res = await axios.get(
-      `http://localhost:8000/api/users/${user.id}/events`
+      `https://damp-falls-69999.herokuapp.com/api/users/${user.id}/events`
     );
 
     if (res.data.events) {

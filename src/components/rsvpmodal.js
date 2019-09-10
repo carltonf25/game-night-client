@@ -16,7 +16,7 @@ const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
     let data = { guests: [{ name: name }] };
 
     const res = await axios.post(
-      `http://localhost:8000/api/events/${event.event_code}/guests`,
+      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}/guests`,
       data
     );
 
