@@ -30,7 +30,8 @@ const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
 
   const slideIn = useSpring({
     from: {
-      transform: `translate3d(500px, 0, 0)`,
+      transition: `0.1s ease`,
+      transform: `translate3d(0, -300px, 0)`,
       opacity: 0
     },
     to: {

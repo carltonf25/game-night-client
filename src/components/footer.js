@@ -3,13 +3,7 @@ import { FooterWrapper } from "./styled-components/Footer";
 
 const Footer = () => (
   <FooterWrapper>
-    <code>
-      A{" "}
-      <a target="blank" href="https://fireis.land">
-        Fire Island
-      </a>{" "}
-      Product
-    </code>
+    <code>Made with ❤ by Game Night</code>
   </FooterWrapper>
 );
 
