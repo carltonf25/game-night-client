@@ -45,7 +45,8 @@ const EventCodeInput = () => {
   return (
     <EventCodeWrapper>
       <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
-        The easiest event management platform for organizers and attendees
+        RSVP to an event in seconds. <br />
+        No account required.
       </h1>
       {success && (
         <Success>

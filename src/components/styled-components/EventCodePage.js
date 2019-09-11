@@ -11,6 +11,10 @@ export const EventCodeWrapper = styled.div`
     font-size: 1.5em;
   }
 
+  h1 {
+    width: 100%;
+  }
+
   input {
     background: none;
     border: 1px solid #16f5b3;
@@ -25,7 +29,7 @@ export const EventCodeWrapper = styled.div`
 
   button {
     background: #16f5b3;
-    padding: 16px;
+    padding: 15px;
     border: none;
     font-size: 1.3em;
     -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
@@ -50,7 +54,11 @@ export const EventCodeWrapper = styled.div`
       }
 
       input {
-        width: 60%;
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
       }
     }
   }

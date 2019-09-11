@@ -38,6 +38,7 @@ export const HeaderWrapper = styled.header`
   display: none;
   cursor: pointer;
   grid-column: 3/-1;
+  margin-right: 2em;
 
 }
 
@@ -68,5 +69,6 @@ export const HeaderWrapper = styled.header`
     .hamburger {
       display: block;
     }
+
   }
 `;
