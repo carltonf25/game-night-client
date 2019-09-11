@@ -12,7 +12,7 @@ const App = () => {
   const routeResult = useRoutes(routes);
   const [event, setEvent] = useState({});
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
+    JSON.parse(localStorage.getItem("user")) || false
   );
 
   const [isNavOpen, setNavOpen] = useState(false);
@@ -23,7 +23,7 @@ const App = () => {
 
   const logOut = () => {
     localStorage.removeItem("user");
-    setUser(null);
+    setUser(false);
   };
 
   useEffect(() => {}, []);
