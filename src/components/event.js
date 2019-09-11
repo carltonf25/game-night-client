@@ -74,14 +74,16 @@ const Event = ({ eventCode }) => {
               {formatDate(event.date)} at {event.location || "TBD"}
             </h3>
             <h2>{event.title}</h2>
-            <button
-              onClick={e => {
-                e.preventDefault();
-                setModal(true);
-              }}
-            >
-              RSVP
-            </button>
+            {user.id !== event.user_id ? (
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                  setModal(true);
+                }}
+              >
+                RSVP
+              </button>
+            ) : null}
           </div>
         </Section>
         <Section>
