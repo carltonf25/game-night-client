@@ -8,7 +8,6 @@ import axios from "axios";
 const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
   const { event } = useContext(AppContext);
   const [name, setName] = useState("");
-  const [bringing, setBringing] = useState(["just myself"]);
   const [guests, setGuests] = useState([]);
   const [error, setError] = useState("");
 
@@ -16,7 +15,7 @@ const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
     let data = { guests: [{ name: name }] };
 
     const res = await axios.post(
-      `/api/events/${event.event_code}/guests`,
+      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}/guests`,
       data
     );
 
