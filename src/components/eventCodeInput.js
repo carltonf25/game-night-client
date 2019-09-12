@@ -44,10 +44,7 @@ const EventCodeInput = () => {
   };
   return (
     <EventCodeWrapper>
-      <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
-        RSVP to an event in seconds. <br />
-        No account required.
-      </h1>
+      <div className="content-wrapper"></div>
       {success && (
         <Success>
           <p>{success}</p>
@@ -58,14 +55,17 @@ const EventCodeInput = () => {
           <p>{error}</p>
         </Error>
       )}
-      <label htmlFor="event-code">Enter event code:</label>
       <div
         className="input-button-wrapper"
         style={{
-          width: `auto`,
           marginTop: `1em`
         }}
       >
+        <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
+          RSVP to an event in seconds. <br />
+          No account required.
+        </h1>
+        <label htmlFor="event-code">Enter event code:</label>
         <input
           type="text"
           name="event-code"

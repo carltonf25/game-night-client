@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 export const PageWrapper = styled.div`
+display: grid;
+grid-template-columns: 10% 1fr 10%;
 grid-area: route;
-grid-column: 2/3;
 color: #16f5b3;
 margin: 2em;
 min-height: 80vh;
+max-width: 760px;
 }
 form {
-  grid-column: 2/3;
+  grid-column: 1/-1;
   label {
     color: #16f5b3;
     font-size: 1.5em;
@@ -49,12 +51,8 @@ button {
     cursor: pointer;
     background: #17b180;
   }
-
+}
   @media screen and (max-width: 760px) {
   grid-column: 1/-1;
-    table {
-      width: 100%;
-    }
   }
-}
 `;

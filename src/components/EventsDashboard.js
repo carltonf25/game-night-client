@@ -36,41 +36,52 @@ const EventsDashboard = () => {
 
   return (
     <animated.div style={fadeIn}>
-      <Section
+      <div
         style={{
+          gridArea: `route`,
+          width: `100vw`,
           display: `grid`,
           gridTemplateColumns: `10% 1fr 10%`,
           gridColumn: `2/3`
         }}
       >
-        <h1>Upcoming Events</h1>
-        <div
+        <Section
           style={{
-            gridRow: `2/3`,
+            display: `grid`,
+            gridArea: `route`,
+            gridTemplateColumns: `10% 1fr 10%`,
             gridColumn: `2/3`
           }}
         >
-          <CreateButton
-            onClick={e => {
-              e.preventDefault();
-              navigate(`/create`);
+          <h1>Upcoming Events</h1>
+          <div
+            style={{
+              gridRow: `2/3`,
+              gridColumn: `2/3`
             }}
           >
-            Create
-          </CreateButton>
-          {events.length > 0 ? (
-            events.map(e => <EventCard {...e} />)
-          ) : (
-            <p
-              style={{
-                justifySelf: `center`
+            <CreateButton
+              onClick={e => {
+                e.preventDefault();
+                navigate(`/create`);
               }}
             >
-              No upcoming events.
-            </p>
-          )}
-        </div>
-      </Section>
+              Create
+            </CreateButton>
+            {events.length > 0 ? (
+              events.map(e => <EventCard {...e} />)
+            ) : (
+              <p
+                style={{
+                  justifySelf: `center`
+                }}
+              >
+                No upcoming events.
+              </p>
+            )}
+          </div>
+        </Section>
+      </div>
     </animated.div>
   );
 };

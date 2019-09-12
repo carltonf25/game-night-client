@@ -5,7 +5,6 @@ export const EventWrapper = styled.div`
   width: 100vw;
   margin-top: 2em;
   color: #fefefe;
-  grid-column: 2/3;
   grid-template-columns: 10% 1fr 10%;
 
   img {
@@ -38,6 +37,7 @@ export const EventWrapper = styled.div`
   }
   @media screen and (max-width: 760px) {
     grid-column: 1/-1;
+
     .event-heading {
       grid-template-rows: auto;
       .date-section {
@@ -45,7 +45,7 @@ export const EventWrapper = styled.div`
       }
       img,
       button {
-        grid-column: 1/-1;
+        grid-column: -1/-1;
       }
     }
     .description-date {
@@ -57,7 +57,7 @@ export const EventWrapper = styled.div`
 `;
 
 export const Table = styled.table`
-  width: 70%;
+  width: 75%;
   -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
