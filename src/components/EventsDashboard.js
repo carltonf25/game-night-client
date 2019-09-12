@@ -5,6 +5,7 @@ import EventCard from "./EventCard";
 import axios from "axios";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
+import { animated, useSpring } from "react-spring";
 
 const EventsDashboard = () => {
   const { user } = useContext(AppContext);
@@ -20,46 +21,57 @@ const EventsDashboard = () => {
     }
   };
 
+  const fadeIn = useSpring({
+    from: {
+      opacity: 0
+    },
+    to: {
+      opacity: 1
+    }
+  });
+
   useEffect(() => {
     getEvents();
   }, []);
 
   return (
-    <Section
-      style={{
-        display: `grid`,
-        gridTemplateColumns: `10% 1fr 10%`,
-        gridColumn: `2/3`
-      }}
-    >
-      <h1>Upcoming Events</h1>
-      <div
+    <animated.div style={fadeIn}>
+      <Section
         style={{
-          gridRow: `2/3`,
+          display: `grid`,
+          gridTemplateColumns: `10% 1fr 10%`,
           gridColumn: `2/3`
         }}
       >
-        <CreateButton
-          onClick={e => {
-            e.preventDefault();
-            navigate(`/create`);
+        <h1>Upcoming Events</h1>
+        <div
+          style={{
+            gridRow: `2/3`,
+            gridColumn: `2/3`
           }}
         >
-          Create
-        </CreateButton>
-        {events.length > 0 ? (
-          events.map(e => <EventCard {...e} />)
-        ) : (
-          <p
-            style={{
-              justifySelf: `center`
+          <CreateButton
+            onClick={e => {
+              e.preventDefault();
+              navigate(`/create`);
             }}
           >
-            No upcoming events.
-          </p>
-        )}
-      </div>
-    </Section>
+            Create
+          </CreateButton>
+          {events.length > 0 ? (
+            events.map(e => <EventCard {...e} />)
+          ) : (
+            <p
+              style={{
+                justifySelf: `center`
+              }}
+            >
+              No upcoming events.
+            </p>
+          )}
+        </div>
+      </Section>
+    </animated.div>
   );
 };
 

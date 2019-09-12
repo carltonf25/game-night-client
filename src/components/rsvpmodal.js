@@ -5,7 +5,7 @@ import { useSpring, animated } from "react-spring";
 import { Overlay } from "./styled-components/RsvpModal";
 import axios from "axios";
 
-const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
+const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
   const { event } = useContext(AppContext);
   const [name, setName] = useState("");
   const [guests, setGuests] = useState([]);
@@ -14,6 +14,11 @@ const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
   const addGuest = async () => {
     let data = { guests: [{ name: name }] };
 
+    if (!name) {
+      setError("Please provide a name");
+      return;
+    }
+
     const res = await axios.post(
       `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}/guests`,
       data
@@ -21,6 +26,7 @@ const RsvpModal = ({ fetchEvent, closeModal, modal }) => {
 
     if (res.data.added === true) {
       fetchEvent();
+      setSuccessFlash(res.data.flash);
       closeModal();
     } else {
       setError("Unable to add guest");

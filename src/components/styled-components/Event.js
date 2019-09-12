@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const EventWrapper = styled.div`
+  display: grid;
+  width: 100vw;
   margin-top: 2em;
   color: #fefefe;
-  grid-template-columns: 10vw auto auto 10vw;
   grid-column: 2/3;
+  grid-template-columns: 10% 1fr 10%;
 
   img {
     width: 100%;

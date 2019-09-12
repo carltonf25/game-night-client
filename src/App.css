@@ -1,12 +1,14 @@
 html {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
   background: #272236;
+  width: 100%;
 }
 .App {
   margin: 0;
@@ -16,6 +18,9 @@ body {
     "header header header"
     "route route route"
     "footer footer footer";
-  grid-template-columns: 10% 1fr 10%;
-  grid-template-rows: 8vh 1fr 8vh;
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .App {
+  }
 }
