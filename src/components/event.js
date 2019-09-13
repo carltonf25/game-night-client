@@ -21,7 +21,9 @@ const Event = ({ eventCode }) => {
   const isLoggedInUser = user.id === event.user_id ? true : false;
 
   const fetchEvent = async () => {
-    let res = await axios.get(`/api/events/${eventCode}`);
+    let res = await axios.get(
+      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`
+    );
 
     if (res.data.event) {
       setEvent(res.data.event);
@@ -109,8 +111,7 @@ const Event = ({ eventCode }) => {
                 ) : null}
                 <hr
                   style={{
-                    border: `1px solid #fefefe`,
-                    opacity: `0.6`
+                    border: `1px solid rgba(220, 220, 220, 0.75)`
                   }}
                 />
               </div>
