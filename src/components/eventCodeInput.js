@@ -3,6 +3,7 @@ import { Error, Success } from "./styled-components/common";
 import { EventCodeWrapper } from "./styled-components/EventCodePage";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
+import { useSpring, animated } from "react-spring";
 require("dotenv").config();
 
 const EventCodeInput = () => {
@@ -42,49 +43,60 @@ const EventCodeInput = () => {
       }, 1500);
     }
   };
+
+  const fadeIn = useSpring({
+    from: {
+      opacity: 0
+    },
+    to: {
+      opacity: 1
+    }
+  });
+
   return (
-    <EventCodeWrapper>
-      <div className="content-wrapper"></div>
-      {success && (
-        <Success>
-          <p>{success}</p>
-        </Success>
-      )}
-      {error && (
-        <Error>
-          <p>{error}</p>
-        </Error>
-      )}
-      <div
-        className="input-button-wrapper"
-        style={{
-          marginTop: `1em`
-        }}
-      >
-        <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
-          RSVP to an event in seconds. <br />
-          No account required.
-        </h1>
-        <label htmlFor="event-code">Enter event code:</label>
-        <input
-          type="text"
-          name="event-code"
-          onChange={e => {
-            e.preventDefault();
-            setInputValue(e.target.value);
-          }}
-          value={inputValue}
-        />
-        <button
-          onClick={e => {
-            e.preventDefault();
-            getEvent();
+    <animated.div style={fadeIn}>
+      <EventCodeWrapper>
+        {success && (
+          <Success>
+            <p>{success}</p>
+          </Success>
+        )}
+        {error && (
+          <Error>
+            <p>{error}</p>
+          </Error>
+        )}
+        <div
+          className="input-button-wrapper"
+          style={{
+            marginTop: `1em`
           }}
         >
-          Join Event
-        </button>
-      </div>
-    </EventCodeWrapper>
+          <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
+            RSVP to an event in seconds. <br />
+            No account required.
+          </h1>
+          <label htmlFor="event-code">Enter event code:</label>
+          <input
+            type="text"
+            name="event-code"
+            onChange={e => {
+              e.preventDefault();
+              setInputValue(e.target.value);
+            }}
+            value={inputValue}
+          />
+          <button
+            onClick={e => {
+              e.preventDefault();
+              getEvent();
+            }}
+          >
+            Join Event
+          </button>
+        </div>
+      </EventCodeWrapper>
+    </animated.div>
   );
 };
 
