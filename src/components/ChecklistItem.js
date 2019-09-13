@@ -43,24 +43,21 @@ const ChecklistItem = ({
     >
       <h2>{heading}</h2>
       {editing ? (
-        <>
-          <label>{getLabelText()}</label>
-          <input
-            type={type || "text"}
-            value={value}
-            onChange={e => {
-              e.preventDefault();
-              setValue(e.target.value);
-            }}
-          ></input>
-        </>
+        <input
+          type={type || "text"}
+          value={value}
+          onChange={e => {
+            e.preventDefault();
+            setValue(e.target.value);
+          }}
+        ></input>
       ) : item !== "header_image" ? (
         <p>{value}</p>
       ) : (
         <img
           alt="header"
           style={{
-            width: `560px`
+            width: `90%`
           }}
           src={value}
         />
