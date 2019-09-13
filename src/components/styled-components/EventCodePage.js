@@ -4,7 +4,7 @@ export const EventCodeWrapper = styled.div`
   grid-area: route;
   grid-template-columns: 10% 1fr 10%;
   margin: 2em;
-  min-height: 77.5vh;
+  min-height: 80vh;
   label {
     color: #16f5b3;
     font-size: 1.5em;

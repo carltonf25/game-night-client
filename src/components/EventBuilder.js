@@ -72,6 +72,12 @@ const EventBuilder = () => {
             </Error>
           )}
           <ChecklistItem
+            item="header_image"
+            setEvent={setEvent}
+            heading="Header Image URL"
+            defaultVal="http://via.placeholder.com/640x360"
+          />
+          <ChecklistItem
             item="title"
             setEvent={setEvent}
             heading="Title"
@@ -86,9 +92,15 @@ const EventBuilder = () => {
           <ChecklistItem
             item="date"
             setEvent={setEvent}
-            heading="When & Where?"
-            defaultVal="When & Where?"
+            heading="When?"
+            defaultVal=""
             type="date"
+          />
+          <ChecklistItem
+            item="location"
+            setEvent={setEvent}
+            heading="Where?"
+            defaultVal=""
           />
           <button
             style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}

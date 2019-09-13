@@ -1,13 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
+import { navigate } from "hookrouter";
+import { useSpring, animated } from "react-spring";
+import axios from "axios";
+// components && styles
 import { Section, Success } from "./styled-components/common";
 import { EventWrapper } from "./styled-components/Event";
-import { useRedirect, navigate } from "hookrouter";
-import { useSpring, animated } from "react-spring";
-
-import axios from "axios";
 import GuestTable from "./GuestTable";
 import RsvpModal from "./RsvpModal";
 import { AppContext } from "../AppContext";
+// images
+import clock from "../img/clock-icon.svg";
+import locationIcon from "../img/location-icon.svg";
 
 const Event = ({ eventCode }) => {
   const { user, event, setEvent } = useContext(AppContext);
@@ -15,13 +18,10 @@ const Event = ({ eventCode }) => {
   const [guests, setGuests] = useState([{ name: "Test" }]);
   const [successFlash, setSuccessFlash] = useState("");
 
-  const isGuest = user === null ? true : false;
   const isLoggedInUser = user.id === event.user_id ? true : false;
 
   const fetchEvent = async () => {
-    let res = await axios.get(
-      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`
-    );
+    let res = await axios.get(`/api/events/${eventCode}`);
 
     if (res.data.event) {
       setEvent(res.data.event);
@@ -91,20 +91,53 @@ const Event = ({ eventCode }) => {
               }
             />
             <div className="date-rsvp-section">
-              <h3>
-                {formatDate(event.date)} at {event.location || "TBD"}
-              </h3>
-              <h2>{event.title}</h2>
-              {!isLoggedInUser ? (
-                <button
-                  onClick={e => {
-                    e.preventDefault();
-                    setModal(true);
+              <div
+                style={{
+                  marginBottom: `2em`
+                }}
+              >
+                <h2>{event.title}</h2>
+                {!isLoggedInUser ? (
+                  <button
+                    onClick={e => {
+                      e.preventDefault();
+                      setModal(true);
+                    }}
+                  >
+                    RSVP
+                  </button>
+                ) : null}
+                <hr
+                  style={{
+                    border: `1px solid #fefefe`,
+                    opacity: `0.6`
                   }}
-                >
-                  RSVP
-                </button>
-              ) : null}
+                />
+              </div>
+              <div style={{ margin: `1em` }}>
+                <img
+                  alt="time icon"
+                  src={clock}
+                  style={{
+                    width: `1.5em`
+                  }}
+                />
+                <h3 style={{ display: `inline`, marginLeft: `1em` }}>
+                  {formatDate(event.date)} at {formatTime(event.date)}
+                </h3>
+              </div>
+              <div style={{ margin: `1em` }}>
+                <img
+                  alt="time icon"
+                  src={locationIcon}
+                  style={{
+                    width: `1.5em`
+                  }}
+                />
+                <h3 style={{ display: `inline`, marginLeft: `1em` }}>
+                  {event.location || `TBD`}
+                </h3>
+              </div>
             </div>
           </Section>
           <Section>
@@ -117,18 +150,6 @@ const Event = ({ eventCode }) => {
                 <h3>About this event:</h3>
                 <p>
                   {event.description ? event.description : "placeholder text"}
-                </p>
-              </div>
-              <div
-                style={{
-                  padding: `20px`
-                }}
-              >
-                <h3>Date & Time:</h3>
-                <p>
-                  {event.date
-                    ? `${formatDate(event.date)} @ ${formatTime(event.date)}`
-                    : "12/31 @ 7pm"}
                 </p>
               </div>
             </div>

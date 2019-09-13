@@ -28,6 +28,7 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
       fetchEvent();
       setSuccessFlash(res.data.flash);
       closeModal();
+      window.scrollTo(0, 0);
     } else {
       setError("Unable to add guest");
     }
