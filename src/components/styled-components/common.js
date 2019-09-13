@@ -26,7 +26,7 @@ export const Section = styled.div`
   -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  margin: 2em;
+  margin: 1em;
   color: #fefefe;
   max-width: 1000px;
 
