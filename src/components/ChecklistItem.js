@@ -57,7 +57,8 @@ const ChecklistItem = ({
         <img
           alt="header"
           style={{
-            width: `90%`
+            width: `90%`,
+            margin: `0 auto 1em auto`
           }}
           src={value}
         />
