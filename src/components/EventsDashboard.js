@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Section, Wrapper } from "./styled-components/common";
+import { Section, Wrapper, Success, Error } from "./styled-components/common";
 import { CreateButton } from "./styled-components/EventsDashboard";
 import EventCard from "./EventCard";
 import axios from "axios";
@@ -10,6 +10,8 @@ import { animated, useSpring } from "react-spring";
 const EventsDashboard = () => {
   const { user } = useContext(AppContext);
   const [events, setEvents] = useState([]);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   const getEvents = async () => {
     const res = await axios.get(
@@ -53,10 +55,24 @@ const EventsDashboard = () => {
             gridColumn: `2/3`
           }}
         >
-          <h1>Upcoming Events</h1>
+          {success && (
+            <div style={{ gridRow: 1, gridColumn: `2/3` }}>
+              <Success>
+                <p>{success}</p>
+              </Success>
+            </div>
+          )}
+          {error && (
+            <div style={{ gridRow: 1, gridColumn: `2/3` }}>
+              <Error>
+                <p>{error}</p>
+              </Error>
+            </div>
+          )}
+          <h1 style={{ gridRow: 2 }}>Upcoming Events</h1>
           <div
             style={{
-              gridRow: `2/3`,
+              gridRow: `3`,
               gridColumn: `2/3`
             }}
           >
@@ -69,7 +85,14 @@ const EventsDashboard = () => {
               Create
             </CreateButton>
             {events.length > 0 ? (
-              events.map(e => <EventCard {...e} />)
+              events.map(e => (
+                <EventCard
+                  {...e}
+                  setSuccess={setSuccess}
+                  setError={setError}
+                  getEvents={getEvents}
+                />
+              ))
             ) : (
               <p
                 style={{

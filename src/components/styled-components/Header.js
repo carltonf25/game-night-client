@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HeaderWrapper = styled.header`
   background: #261a30;
   grid-area: header;
+  width: 100%;
   padding: 1.2em;
   align-items: center;
   -webkit-box-shadow: 1px 0px 4px 1px rgba(20, 20, 20, 0.6);

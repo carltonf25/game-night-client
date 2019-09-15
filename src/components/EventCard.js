@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { A } from "hookrouter";
+import axios from "axios";
 
 const CardWrapper = styled.div`
   background-color: #fefefe;
@@ -21,32 +22,67 @@ const CardWrapper = styled.div`
   }
 `;
 
-const EventCard = ({ title, header_image, date, event_code }) => (
-  <A
-    style={{
-      textDecoration: `none`
-    }}
-    href={`/events/${event_code}`}
-  >
-    <CardWrapper
-      style={{
-        backgroundImage: `url(${header_image})`
-      }}
-    >
-      <div
-        style={{
-          background: `rgba(100, 100, 100, 0.4)`,
-          width: `100%`,
-          height: `100%`
+const EventCard = ({
+  id,
+  title,
+  header_image,
+  date,
+  event_code,
+  setSuccess,
+  setError,
+  getEvents
+}) => {
+  const deleteEvent = async () => {
+    let res = await axios.delete(
+      `https://damp-falls-69999.herokuapp.com/api/events/${id}`
+    );
+    if (res.data.success === true) {
+      getEvents();
+      setSuccess(`Successfully deleted event.`);
+      window.scrollTo(0, 0);
+    } else {
+      setError("Unable to delete event");
+    }
+  };
+  return (
+    <>
+      <button
+        onClick={e => {
+          e.preventDefault();
+          deleteEvent(id);
+          getEvents();
         }}
+        style={{ marginLeft: `85%` }}
       >
-        <div style={{ padding: `1.5em` }}>
-          <h3>{title}</h3>
-          <h4>{date}</h4>
-        </div>
-      </div>
-    </CardWrapper>
-  </A>
-);
+        ✖
+      </button>
+      <A
+        style={{
+          textDecoration: `none`
+        }}
+        href={`/events/${event_code}`}
+      >
+        <CardWrapper
+          style={{
+            backgroundImage: `url(${header_image})`
+          }}
+        >
+          <div
+            style={{
+              background: `rgba(100, 100, 100, 0.4)`,
+              width: `100%`,
+              height: `100%`
+            }}
+          >
+            <div style={{ padding: `1.5em` }}>
+              <h3>{title}</h3>
+              <h4>{date}</h4>
+            </div>
+          </div>
+        </CardWrapper>
+      </A>
+    </>
+  );
+};
 
 export default EventCard;

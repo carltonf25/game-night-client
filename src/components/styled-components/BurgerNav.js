@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const NavWrapper = styled.div`
-  z-index: 37;
   position: absolute;
   display: flex;
   flex-direction: column;
