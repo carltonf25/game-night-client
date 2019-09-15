@@ -76,7 +76,7 @@ const Event = ({ eventCode }) => {
       <animated.div style={fadeIn}>
         <EventWrapper>
           {successFlash !== "" && (
-            <Success>
+            <Success style={fadeIn}>
               <p>{successFlash}</p>
             </Success>
           )}
