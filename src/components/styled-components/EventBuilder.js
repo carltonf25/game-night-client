@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const ChecklistItem = styled.div`
   color: #261a2f;
-  background: #dad3d4;
   padding: 15px;
   grid-column: 1/-1;
   margin: 10px 0;

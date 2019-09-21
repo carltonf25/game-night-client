@@ -61,6 +61,7 @@ export const Error = styled.div`
   background: #ff8e74;
   padding: 15px;
   font-weight: 600;
+  font-size: 1.2em;
   margin: 1em 0;
   color: #fefefe;
   border-left: 5px solid red;
@@ -74,6 +75,7 @@ export const Success = styled.div`
   background: #07ca79;
   padding: 15px;
   font-weight: 600;
+  font-size: 1.2em;
   margin: 1em 0;
   color: #fefefe;
   border-left: 5px solid #10814d;
