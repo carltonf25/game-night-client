@@ -54,7 +54,9 @@ const EventBuilder = () => {
           style={{
             gridColumn: `2/3`,
             display: `grid`,
-            gridTemplateColumns: `10% 1fr 10%`
+            gridTemplateColumns: `10% 1fr 10%`,
+            background: `none`,
+            boxShadow: `none`
           }}
         >
           <A href="/dashboard">Back to Dashboard</A>

@@ -16,29 +16,13 @@ const ChecklistItem = ({
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(defaultVal);
 
-  let bgColor = checked ? `green` : `#fefefe`;
-
-  const getLabelText = () => {
-    let text = "";
-    switch (type) {
-      case "header_image":
-        console.log(type);
-        text = `Paste an Image URL`;
-        break;
-
-      default:
-        console.log(type);
-        text = ``;
-        break;
-    }
-    console.log(text);
-    return text;
-  };
+  let bgColor = checked ? `#c7f5df` : `#e2e9ec`;
 
   return (
     <Item
       style={{
-        background: { bgColor }
+        background: bgColor,
+        borderLeft: checked ? `5px solid #15f5b3` : `5px solid #b29cbb`
       }}
     >
       <h2>{heading}</h2>
@@ -58,7 +42,8 @@ const ChecklistItem = ({
           alt="header"
           style={{
             width: `90%`,
-            margin: `0 auto 1em auto`
+            marginBottom: `1em`,
+            maxHeight: `150px`
           }}
           src={value}
         />
@@ -68,6 +53,7 @@ const ChecklistItem = ({
           e.preventDefault();
           if (editing === true) {
             setEvent(event => ({ ...event, [item]: value }));
+            setChecked(true);
           }
           setEditing(!editing);
         }}
