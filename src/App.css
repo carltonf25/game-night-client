@@ -9,12 +9,9 @@ body {
   background: #272236;
 }
 .App {
+  margin: 0;
+  padding: 0;
   display: grid;
-  /* grid-template-rows: 80px 1fr 80px;
-  grid-template-columns: 10% 1fr 10%; */
-  grid-template-areas:
-    "header header header"
-    "route route route"
-    "footer footer footer";
-  width: 100vw;
+  grid-template-rows: 80px 1fr 80px;
+  grid-template-columns: 10% auto 10%;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Error, Success } from "./styled-components/common";
+import { Error, Success, Wrapper, Section } from "./styled-components/common";
 import { EventCodeWrapper } from "./styled-components/EventCodePage";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
@@ -54,7 +54,8 @@ const EventCodeInput = () => {
   });
 
   return (
-    <animated.div style={fadeIn}>
+    <Wrapper>
+      <Section style={{background: `none`, boxShadow: `none`}}>
       <EventCodeWrapper>
         {success && (
           <Success>
@@ -96,7 +97,8 @@ const EventCodeInput = () => {
           </button>
         </div>
       </EventCodeWrapper>
-    </animated.div>
+      </Section>
+    </Wrapper>
   );
 };
 

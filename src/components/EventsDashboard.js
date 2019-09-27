@@ -37,45 +37,19 @@ const EventsDashboard = () => {
   }, []);
 
   return (
-    <animated.div style={fadeIn}>
-      <div
-        style={{
-          gridArea: `route`,
-          width: `100vw`,
-          display: `grid`,
-          gridTemplateColumns: `10% 1fr 10%`,
-          gridColumn: `2/3`
-        }}
-      >
-        <Section
-          style={{
-            display: `grid`,
-            gridArea: `route`,
-            gridTemplateColumns: `10% 1fr 10%`,
-            gridColumn: `2/3`
-          }}
-        >
+      <Wrapper>
+        <Section>
           {success && (
-            <div style={{ gridRow: 1, gridColumn: `2/3` }}>
               <Success>
                 <p>{success}</p>
               </Success>
-            </div>
           )}
           {error && (
-            <div style={{ gridRow: 1, gridColumn: `2/3` }}>
               <Error>
                 <p>{error}</p>
               </Error>
-            </div>
           )}
-          <h1 style={{ gridRow: 2 }}>Upcoming Events</h1>
-          <div
-            style={{
-              gridRow: `3`,
-              gridColumn: `2/3`
-            }}
-          >
+          <h1>Upcoming Events</h1>
             <CreateButton
               onClick={e => {
                 e.preventDefault();
@@ -102,10 +76,8 @@ const EventsDashboard = () => {
                 No upcoming events.
               </p>
             )}
-          </div>
         </Section>
-      </div>
-    </animated.div>
+      </Wrapper>
   );
 };
 

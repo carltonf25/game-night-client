@@ -48,6 +48,7 @@ const ButtonBlock = ({ id, event_code, deleteEvent, getEvents, copyCode }) => {
       <button
         onClick={e => {
           e.preventDefault();
+          navigate(`/events/${event_code}/edit`);
         }}
         style={{ background: `#e1e1e1` }}
       >

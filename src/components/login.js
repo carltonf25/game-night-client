@@ -3,8 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
-import { Section, Error } from "./styled-components/common";
-import { PageWrapper } from "./styled-components/Login";
+import { Section, Wrapper, Error } from "./styled-components/common";
+import { Form } from "./styled-components/Form"
 require("dotenv").config();
 
 const Login = () => {
@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <PageWrapper>
+    <Wrapper>
       <Section>
         <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>Sign in</h1>
         {error && (
@@ -48,7 +48,7 @@ const Login = () => {
             <p>{error}</p>
           </Error>
         )}
-        <form>
+        <Form>
           <label htmlFor="email">Email:</label>
           <br />
           <input
@@ -81,9 +81,9 @@ const Login = () => {
           >
             Log in
           </button>
-        </form>
+        </Form>
       </Section>
-    </PageWrapper>
+    </Wrapper>
   );
 };
 

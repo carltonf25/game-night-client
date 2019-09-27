@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AppContext } from "../AppContext";
-import { Section, Error, Success } from "./styled-components/common";
-import { PageWrapper } from "./styled-components/Signup";
+import { Section, Wrapper, Error, Success } from "./styled-components/common";
+import {Form} from "./styled-components/Form"
 import { navigate } from "hookrouter";
 require("dotenv").config();
 
@@ -51,7 +51,8 @@ const Signup = () => {
   };
 
   return (
-    <PageWrapper>
+    <Wrapper>
+      
       <Section>
         <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>Sign up</h1>
         {error && (
@@ -64,7 +65,7 @@ const Signup = () => {
             <p>{success}</p>
           </Success>
         )}
-        <form>
+        <Form>
           <label htmlFor="email">Email:</label>
           <br />
           <input
@@ -97,9 +98,9 @@ const Signup = () => {
           >
             Sign up
           </button>
-        </form>
+        </Form>
       </Section>
-    </PageWrapper>
+    </Wrapper>
   );
 };
 

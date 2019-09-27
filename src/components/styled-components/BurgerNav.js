@@ -12,6 +12,7 @@ export const NavWrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 5;
   background: #272236;
   a {
     font-size: 3rem;

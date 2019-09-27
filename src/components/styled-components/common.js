@@ -1,11 +1,12 @@
 import styled from "styled-components";
 export const Wrapper = styled.div`
   display: grid;
+  grid-row: 2/3;
   grid-template-columns: 10% 1fr 10%;
-  width: 100vw;
   padding: 0;
-  z-index: 1;
-  min-height: 80vh;
+  grid-column: 1/-1;
+  width: 100%;
+  margin-bottom: 54vh;
 
   input {
     background: none;
@@ -22,14 +23,18 @@ export const Wrapper = styled.div`
 
 export const Section = styled.div`
   background: #261a30;
-  grid-column: 2/3;
-  padding: 15px;
+  padding: 2em;
   -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
-  margin: 1em;
+  margin: 1em 0;
   color: #fefefe;
-  max-width: 860px;
+  grid-column: 2/3;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 760px;
+
 
 button {
   background: #16f5b3;
