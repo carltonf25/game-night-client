@@ -81,9 +81,6 @@ const Event = ({ eventCode }) => {
             </Success>
           )}
           <Section
-            style={{
-              padding: 0
-            }}
           >
             <img
               alt="placeholder"

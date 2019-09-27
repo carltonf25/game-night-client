@@ -11,6 +11,9 @@ export const EventWrapper = styled.div`
     width: 100%;
     margin: 0;
     max-height: 180px;
+    -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
+    box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   }
   .date-rsvp-section {
     padding: 20px;

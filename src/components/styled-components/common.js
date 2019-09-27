@@ -28,7 +28,7 @@ export const Section = styled.div`
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   margin: 1em;
   color: #fefefe;
-  max-width: 1000px;
+  max-width: 860px;
 
 button {
   background: #16f5b3;

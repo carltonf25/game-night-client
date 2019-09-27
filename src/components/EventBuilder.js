@@ -4,8 +4,6 @@ import { useSpring, animated } from "react-spring";
 import { Wrapper, Section, Error } from "./styled-components/common";
 import axios from "axios";
 import { A, navigate } from "hookrouter";
-import CKEditor from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import ChecklistItem from "./ChecklistItem";
 
 const EventBuilder = () => {
