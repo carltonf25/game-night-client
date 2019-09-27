@@ -43,7 +43,7 @@ const App = () => {
           setNavOpen={setNavOpen}
           isNavOpen={isNavOpen}
         />
-        <div style={{ gridArea: `route` }}>{routeResult}</div>
+        <div style={{ gridArea: `route`, minHeight: `85vh` }}>{routeResult}</div>
         <Footer />
       </div>
     </AppContext.Provider>

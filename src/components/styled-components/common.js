@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   width: 100vw;
   padding: 0;
   z-index: 1;
+  min-height: 80vh;
 
   input {
     background: none;
@@ -72,12 +73,12 @@ export const Error = styled.div`
 
 export const Success = styled.div`
   grid-column: 2/3;
-  background: #07ca79;
+  background: #15f5b3;
   padding: 15px;
   font-weight: 600;
   font-size: 1.2em;
   margin: 1em 0;
-  color: #fefefe;
+  color: #242424;
   border-left: 5px solid #10814d;
   -webkit-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
