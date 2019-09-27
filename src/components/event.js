@@ -3,7 +3,7 @@ import { navigate } from "hookrouter";
 import { useSpring, animated } from "react-spring";
 import axios from "axios";
 // components && styles
-import { Section, Success } from "./styled-components/common";
+import { Section, Success, Wrapper } from "./styled-components/common";
 import { EventWrapper } from "./styled-components/Event";
 import GuestTable from "./GuestTable";
 import RsvpModal from "./RsvpModal";
@@ -74,6 +74,7 @@ const Event = ({ eventCode }) => {
         />
       )}
       <animated.div style={fadeIn}>
+        <Wrapper>
         <EventWrapper>
           {successFlash !== "" && (
             <Success style={fadeIn}>
@@ -157,6 +158,7 @@ const Event = ({ eventCode }) => {
             <GuestTable guests={guests} />
           </Section>
         </EventWrapper>
+        </Wrapper>
       </animated.div>
     </>
   );

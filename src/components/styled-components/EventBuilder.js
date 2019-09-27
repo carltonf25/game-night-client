@@ -15,6 +15,7 @@ export const ChecklistItem = styled.div`
 `;
 
 export const EditButton = styled.button`
+display: block;
   border: none;
   font-size: 10px;
   background: none;

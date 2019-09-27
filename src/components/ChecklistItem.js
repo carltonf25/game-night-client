@@ -29,7 +29,7 @@ const ChecklistItem = ({
       {editing ? (
         <input
           type={type || "text"}
-          value={value}
+          value={value || defaultVal}
           onChange={e => {
             e.preventDefault();
             setValue(e.target.value);
@@ -45,7 +45,7 @@ const ChecklistItem = ({
             marginBottom: `1em`,
             maxHeight: `150px`
           }}
-          src={value}
+          src={value || defaultVal}
         />
       )}
       <EditButton

@@ -1,21 +1,11 @@
 import styled from "styled-components";
 
-export const PageWrapper = styled.div`
-display: grid;
-grid-template-columns: 10% 1fr 10%;
-grid-area: route;
-color: #16f5b3;
-margin: 2em;
-min-height: 80vh;
-max-width: 760px;
-}
-form {
+export const Form = styled.form`
   grid-column: 1/-1;
   label {
     color: #16f5b3;
     font-size: 1.5em;
   }
-
   input {
     background: none;
     border: 1px solid #16f5b3;

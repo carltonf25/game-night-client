@@ -6,33 +6,40 @@ import axios from "axios";
 import { A, navigate } from "hookrouter";
 import ChecklistItem from "./ChecklistItem";
 
-const EventBuilder = () => {
+const EventEditor = ({eventCode}) => {
   const { user } = useContext(AppContext);
 
   const [error, setError] = useState("");
-  const [event, setEvent] = useState({
-    title: "",
-    description: "",
-    date: "",
-    location: "",
-    user_id: user.id,
-    header_image: "http://via.placeholder.com/640x360"
-  });
+  const [event, setEvent] = useState({});
 
-  const createEvent = async () => {
-    const res = await axios.post(
-      `https://damp-falls-69999.herokuapp.com/api/events`,
+  const fetchEvent = async () => {
+    const res = await axios.get(`https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`)
+
+    if (res.data.event) {
+      setEvent(res.data.event);
+    } else {
+      navigate('/dashboard');
+    }
+  }
+  const updateEvent = async () => {
+    const res = await axios.put(
+      `https://damp-falls-69999.herokuapp.com/api/events/${event.id}`,
       event
     );
 
     console.log(res);
 
-    if (res.data.created === true) {
+    if (res.status === 200) {
       navigate("/dashboard");
     } else {
-      setError("Error creating the event.");
+      setError("Error updating the event.");
     }
   };
+
+  useEffect( () => {
+    fetchEvent();
+    console.log(event);
+  }, [])
 
   const slideIn = useSpring({
     from: {
@@ -63,7 +70,7 @@ const EventBuilder = () => {
               textAlign: `center`
             }}
           >
-            New Event
+            Edit Event: {event.title}
           </h1>
           {error && (
             <Error>
@@ -74,45 +81,45 @@ const EventBuilder = () => {
             item="header_image"
             setEvent={setEvent}
             heading="Header Image URL"
-            defaultVal="http://via.placeholder.com/640x360"
+            defaultVal={event.header_image}
           />
           <ChecklistItem
             item="title"
             setEvent={setEvent}
             heading="Title"
-            defaultVal="Title"
+            defaultVal={event.title}
           />
           <ChecklistItem
             item="description"
             setEvent={setEvent}
             heading="Description"
-            defaultVal="Description"
+            defaultVal={event.description}
           />
           <ChecklistItem
             item="date"
             setEvent={setEvent}
             heading="When?"
-            defaultVal=""
+            defaultVal={event.date}
             type="date"
           />
           <ChecklistItem
             item="location"
             setEvent={setEvent}
             heading="Where?"
-            defaultVal=""
+            defaultVal={event.location}
           />
           <button
             style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
             onClick={e => {
               e.preventDefault();
-              createEvent();
+              updateEvent();
             }}
           >
-            Publish
+            Save
           </button>
         </Section>
       </Wrapper>
   );
 };
 
-export default EventBuilder;
+export default EventEditor;

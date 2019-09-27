@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const HeaderWrapper = styled.header`
   background: #261a30;
-  grid-area: header;
+  grid-row: 1/2;
+  grid-column: 1/-1;
   width: 100%;
   padding: 1.2em;
   align-items: center;

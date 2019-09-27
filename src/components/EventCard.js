@@ -10,7 +10,6 @@ const CardWrapper = styled.div`
   -moz-box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.2);
   color: #fefefe;
-  height: 20vh;
   grid-column: auto;
   transition: 0.2s ease;
   grid-column: 2/3;
