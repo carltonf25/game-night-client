@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import logo from "../img/text-logo.svg";
+import { ReactComponent as Logo } from "../img/text-logo.svg";
 import { A, navigate } from "hookrouter";
 import { AppContext } from "../AppContext";
 import { HeaderWrapper } from "./styled-components/Header";
@@ -9,7 +9,7 @@ const Header = ({ logOut, isNavOpen, setNavOpen }) => {
   return (
     <HeaderWrapper>
       <A href="/">
-        <img src={logo} />
+        <Logo />
       </A>
       <nav>
         {user ? (
