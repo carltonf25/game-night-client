@@ -15,7 +15,7 @@ const EventsDashboard = () => {
 
   const getEvents = async () => {
     const res = await axios.get(
-      `https://damp-falls-69999.herokuapp.com/api/users/${user.id}/events`
+      `https://damp-falls-69999.herokuapp.com/api/users/${user.id}/events?api_token=${user.api_token}`
     );
 
     if (res.data.events) {
@@ -37,47 +37,48 @@ const EventsDashboard = () => {
   }, []);
 
   return (
-      <Wrapper>
-        <Section>
-          {success && (
-              <Success>
-                <p>{success}</p>
-              </Success>
-          )}
-          {error && (
-              <Error>
-                <p>{error}</p>
-              </Error>
-          )}
-          <h1>Upcoming Events</h1>
-            <CreateButton
-              onClick={e => {
-                e.preventDefault();
-                navigate(`/create`);
-              }}
-            >
-              Create
-            </CreateButton>
-            {events.length > 0 ? (
-              events.map(e => (
-                <EventCard
-                  {...e}
-                  setSuccess={setSuccess}
-                  setError={setError}
-                  getEvents={getEvents}
-                />
-              ))
-            ) : (
-              <p
-                style={{
-                  justifySelf: `center`
-                }}
-              >
-                No upcoming events.
-              </p>
-            )}
-        </Section>
-      </Wrapper>
+    <Wrapper>
+      <Section>
+        {success && (
+          <Success>
+            <p>{success}</p>
+          </Success>
+        )}
+        {error && (
+          <Error>
+            <p>{error}</p>
+          </Error>
+        )}
+        <h1>Upcoming Events</h1>
+        <CreateButton
+          onClick={e => {
+            e.preventDefault();
+            navigate(`/create`);
+          }}
+        >
+          Create
+        </CreateButton>
+        {events.length > 0 ? (
+          events.map(e => (
+            <EventCard
+              user={user}
+              {...e}
+              setSuccess={setSuccess}
+              setError={setError}
+              getEvents={getEvents}
+            />
+          ))
+        ) : (
+          <p
+            style={{
+              justifySelf: `center`
+            }}
+          >
+            No upcoming events.
+          </p>
+        )}
+      </Section>
+    </Wrapper>
   );
 };
 

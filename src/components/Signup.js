@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AppContext } from "../AppContext";
 import { Section, Wrapper, Error, Success } from "./styled-components/common";
-import {Form} from "./styled-components/Form"
+import { Form } from "./styled-components/Form";
 import { navigate } from "hookrouter";
 require("dotenv").config();
 
@@ -52,7 +52,6 @@ const Signup = () => {
 
   return (
     <Wrapper>
-      
       <Section>
         <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>Sign up</h1>
         {error && (

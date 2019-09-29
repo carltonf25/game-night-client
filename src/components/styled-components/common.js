@@ -1,4 +1,7 @@
 import styled from "styled-components";
+
+export const BackButton = styled.button``;
+
 export const Wrapper = styled.div`
   display: grid;
   grid-row: 2/3;

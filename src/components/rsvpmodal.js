@@ -6,13 +6,13 @@ import { Overlay } from "./styled-components/RsvpModal";
 import axios from "axios";
 
 const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
-  const { event } = useContext(AppContext);
+  const { event, user } = useContext(AppContext);
   const [name, setName] = useState("");
   const [guests, setGuests] = useState([]);
   const [error, setError] = useState("");
 
   const addGuest = async () => {
-    let data = { guests: [{ name: name }] };
+    let data = { guests: [{ name: name }], api_token: user.api_token };
 
     if (!name) {
       setError("Please provide a name");

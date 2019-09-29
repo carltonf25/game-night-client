@@ -23,13 +23,14 @@ const EventCard = ({
   event_code,
   setSuccess,
   setError,
-  getEvents
+  getEvents,
+  user
 }) => {
   const [modalToggle, setModalToggle] = useState(false);
 
   const deleteEvent = async () => {
     let res = await axios.delete(
-      `https://damp-falls-69999.herokuapp.com/api/events/${id}`
+      `https://damp-falls-69999.herokuapp.com/api/events/${id}?api_token=${user.api_token}`
     );
     if (res.data.success === true) {
       getEvents();
