@@ -14,7 +14,7 @@ const EventEditor = ({ eventCode }) => {
 
   const fetchEvent = async () => {
     const res = await axios.get(
-      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}?${user.api_token}`
+      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}?api_token=${user.api_token}`
     );
 
     if (res.data.event) {
@@ -25,8 +25,8 @@ const EventEditor = ({ eventCode }) => {
   };
   const updateEvent = async () => {
     const res = await axios.put(
-      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}`,
-      { event, api_token: user.api_token }
+      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}?api_token=${user.api_token}`,
+      event
     );
 
     console.log(res);

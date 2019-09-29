@@ -12,7 +12,7 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
   const [error, setError] = useState("");
 
   const addGuest = async () => {
-    let data = { guests: [{ name: name }], api_token: user.api_token };
+    let data = { guests: [{ name: name }] };
 
     if (!name) {
       setError("Please provide a name");
@@ -20,7 +20,7 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
     }
 
     const res = await axios.post(
-      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}/guests`,
+      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}/guests?api_token=${user.api_token}`,
       data
     );
 
