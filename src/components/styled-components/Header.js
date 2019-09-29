@@ -31,7 +31,7 @@ export const HeaderWrapper = styled.header`
       margin-left: 1em;
       transition: 0.2s ease;
       :hover {
-        border-bottom: 2px solid #ff70dc;
+        border-bottom: 2px solid #95008d;
         color: #17b180;
       }
     }

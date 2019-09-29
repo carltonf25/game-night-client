@@ -89,7 +89,7 @@ const Event = ({ eventCode }) => {
                   `https://www.adventuresnt.com.au/wp-content/uploads/2015/03/banner-placeholder.jpg`
                 }
               />
-              <div className="date-rsvp-section">
+              <div>
                 <div
                   style={{
                     marginBottom: `2em`
@@ -140,12 +140,8 @@ const Event = ({ eventCode }) => {
             </Section>
             <Section>
               <div className="description-date">
-                <div
-                  style={{
-                    padding: `20px`
-                  }}
-                >
-                  <h3>About this event:</h3>
+                <div style={{}}>
+                  <h2>About this event:</h2>
                   <p>
                     {event.description ? event.description : "placeholder text"}
                   </p>
