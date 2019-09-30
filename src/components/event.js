@@ -60,7 +60,6 @@ const Event = ({ eventCode }) => {
 
   useEffect(() => {
     fetchEvent();
-    console.log("re-fetching");
   }, []);
 
   return (

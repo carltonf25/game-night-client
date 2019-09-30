@@ -14,5 +14,4 @@ body {
   padding: 0;
   display: grid;
   grid-template-rows: 80px 1fr 80px;
-  grid-template-columns: 10% auto 10%;
 }

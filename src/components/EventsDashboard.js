@@ -37,6 +37,7 @@ const EventsDashboard = () => {
   }, []);
 
   return (
+    <animated.div style={fadeIn}>
     <Wrapper>
       <Section>
         {success && (
@@ -79,6 +80,7 @@ const EventsDashboard = () => {
         )}
       </Section>
     </Wrapper>
+    </animated.div>
   );
 };
 

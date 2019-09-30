@@ -46,7 +46,8 @@ const EventBuilder = () => {
   });
 
   return (
-    <Wrapper>
+    <animated.div style={slideIn}>
+      <Wrapper>
       <Section
         style={{
           gridColumn: `2/3`,
@@ -122,6 +123,8 @@ const EventBuilder = () => {
         </button>
       </Section>
     </Wrapper>
+    </animated.div>
+    
   );
 };
 

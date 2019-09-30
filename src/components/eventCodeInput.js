@@ -54,6 +54,7 @@ const EventCodeInput = () => {
   });
 
   return (
+    <animated.div style={fadeIn}>
     <Wrapper>
       <Section style={{ background: `none`, boxShadow: `none` }}>
         <EventCodeWrapper>
@@ -99,6 +100,7 @@ const EventCodeInput = () => {
         </EventCodeWrapper>
       </Section>
     </Wrapper>
+    </animated.div>
   );
 };
 
