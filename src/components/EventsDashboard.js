@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Section, Wrapper, Success, Error } from "./styled-components/common";
 import { CreateButton } from "./styled-components/EventsDashboard";
 import EventCard from "./EventCard";
+import DeleteModal from './DeleteModal';
 import axios from "axios";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
@@ -12,6 +13,7 @@ const EventsDashboard = () => {
   const [events, setEvents] = useState([]);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [deleteModal, setDeleteModal] = useState(true);
 
   const getEvents = async () => {
     const res = await axios.get(
@@ -22,6 +24,9 @@ const EventsDashboard = () => {
       setEvents(res.data.events);
     }
   };
+
+  const openModal = () => setDeleteModal(true);
+  const closeModal = () => setDeleteModal(false);
 
   const fadeIn = useSpring({
     from: {
@@ -37,50 +42,55 @@ const EventsDashboard = () => {
   }, []);
 
   return (
-    <animated.div style={fadeIn}>
-    <Wrapper>
-      <Section>
-        {success && (
-          <Success>
-            <p>{success}</p>
-          </Success>
-        )}
-        {error && (
-          <Error>
-            <p>{error}</p>
-          </Error>
-        )}
-        <h1>Events Dashboard</h1>
-        <CreateButton
-          onClick={e => {
-            e.preventDefault();
-            navigate(`/create`);
-          }}
-        >
-          Create
+    <>
+      (<DeleteModal user={user} setDeleteModal={setDeleteModal} setSuccess={setSuccess} /> 
+      <animated.div style={fadeIn}>
+        <Wrapper>
+          <Section>
+            {success && (
+              <Success>
+                <p>{success}</p>
+              </Success>
+            )}
+            {error && (
+              <Error>
+                <p>{error}</p>
+              </Error>
+            )}
+            <h1>Events Dashboard</h1>
+            <CreateButton
+              onClick={e => {
+                e.preventDefault();
+                navigate(`/create`);
+              }}
+            >
+              Create
         </CreateButton>
-        {events.length > 0 ? (
-          events.map(e => (
-            <EventCard
-              user={user}
-              {...e}
-              setSuccess={setSuccess}
-              setError={setError}
-              getEvents={getEvents}
-            />
-          ))
-        ) : (
-          <p
-            style={{
-              justifySelf: `center`
-            }}
-          >
-            No upcoming events.
+            {events.length > 0 ? (
+              events.map(e => (
+                <EventCard
+                  user={user}
+                  event={e}
+                  setSuccess={setSuccess}
+                  setError={setError}
+                  getEvents={getEvents}
+                  setDeleteModal={setDeleteModal}
+                  openModal={openModal}
+                />
+              ))
+            ) : (
+                <p
+                  style={{
+                    justifySelf: `center`
+                  }}
+                >
+                  No upcoming events.
           </p>
-        )}
-      </Section>
-    </Wrapper>
-    </animated.div>
+              )}
+          </Section>
+        </Wrapper>
+      </animated.div>
+    </>
   );
 };
 

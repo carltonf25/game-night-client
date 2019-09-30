@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { A, navigate } from "hookrouter";
 import ButtonBlock from "./ButtonBlock";
 import axios from "axios";
+import { AppContext } from "../AppContext";
 
 const CardWrapper = styled.div`
   background-color: #fefefe;
@@ -16,17 +17,16 @@ const CardWrapper = styled.div`
 `;
 
 const EventCard = ({
-  id,
-  title,
-  header_image,
-  date,
-  event_code,
+  event,
   setSuccess,
   setError,
   getEvents,
-  user
+  user,
+  setDeleteModal,
+  openModal
+
 }) => {
-  const [modalToggle, setModalToggle] = useState(false);
+  const { id, title, header_image, date, event_code } = event;
 
   const formatDate = dateString => {
     const date = new Date(dateString);
@@ -36,19 +36,7 @@ const EventCard = ({
       day: "numeric"
     });
   };
-
-  const deleteEvent = async () => {
-    let res = await axios.delete(
-      `https://damp-falls-69999.herokuapp.com/api/events/${id}?api_token=${user.api_token}`
-    );
-    if (res.data.success === true) {
-      getEvents();
-      setSuccess(`Successfully deleted event.`);
-      window.scrollTo(0, 0);
-    } else {
-      setError("Unable to delete event");
-    }
-  };
+;
 
   const copyCode = () => {
     let copyText = document.querySelector(`#copy-${event_code}`);
@@ -99,11 +87,13 @@ const EventCard = ({
         style={{
           height: `100%`
         }}
-        id={id}
+        id={id}    
         event_code={event_code}
-        deleteEvent={deleteEvent}
+        event={event}
+        setDeleteModal={setDeleteModal}
         getEvents={getEvents}
         copyCode={copyCode}
+        openModal={openModal}
       />
     </div>
   );

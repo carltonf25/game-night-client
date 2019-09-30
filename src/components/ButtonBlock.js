@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import { navigate } from "hookrouter";
 import styled from "styled-components";
+import { AppContext } from "../AppContext";
 
 const BlockWrapper = styled.div`
   button {
@@ -17,7 +18,13 @@ const BlockWrapper = styled.div`
   }
 `;
 
-const ButtonBlock = ({ id, event_code, deleteEvent, getEvents, copyCode }) => {
+const ButtonBlock = ({ event, id, event_code, openModal, setDeleteModal, getEvents, copyCode }) => {
+  const {setEvent} = useContext(AppContext);
+
+  const openDeleteModal = () => {
+    setEvent(event);
+    openModal();
+  }
   return (
     <BlockWrapper
       style={{
@@ -57,8 +64,7 @@ const ButtonBlock = ({ id, event_code, deleteEvent, getEvents, copyCode }) => {
       <button
         onClick={e => {
           e.preventDefault();
-          deleteEvent(id);
-          getEvents();
+          openDeleteModal();
         }}
         style={{ background: `tomato`, color: `#fefefe`, fontSize: `1em` }}
       >
