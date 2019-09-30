@@ -28,6 +28,15 @@ const EventCard = ({
 }) => {
   const [modalToggle, setModalToggle] = useState(false);
 
+  const formatDate = dateString => {
+    const date = new Date(dateString);
+    return date.toLocaleString("default", {
+      month: "short",
+      weekday: "long",
+      day: "numeric"
+    });
+  };
+
   const deleteEvent = async () => {
     let res = await axios.delete(
       `https://damp-falls-69999.herokuapp.com/api/events/${id}?api_token=${user.api_token}`
@@ -45,9 +54,7 @@ const EventCard = ({
     let copyText = document.querySelector(`#copy-${event_code}`);
     copyText.focus();
     copyText.select();
-    {
-      /* for mobile */
-    }
+
     document.execCommand("copy");
     setSuccess(`Event code copied to clipboard`);
 
@@ -79,7 +86,7 @@ const EventCard = ({
         >
           <div style={{ padding: `1.5em` }}>
             <h3>{title}</h3>
-            <h4>{date}</h4>
+            <h4>{formatDate(date)}</h4>
             <input
               id={`copy-${event_code}`}
               value={event_code}

@@ -49,7 +49,7 @@ const EventsDashboard = () => {
             <p>{error}</p>
           </Error>
         )}
-        <h1>Upcoming Events</h1>
+        <h1>Events Dashboard</h1>
         <CreateButton
           onClick={e => {
             e.preventDefault();
