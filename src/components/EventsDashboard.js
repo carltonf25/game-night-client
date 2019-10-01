@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Section, Wrapper, Success, Error } from "./styled-components/common";
 import { CreateButton } from "./styled-components/EventsDashboard";
 import EventCard from "./EventCard";
-import DeleteModal from './DeleteModal';
+import DeleteModal from "./DeleteModal";
 import axios from "axios";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";
@@ -13,7 +13,7 @@ const EventsDashboard = () => {
   const [events, setEvents] = useState([]);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const [deleteModal, setDeleteModal] = useState(true);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const getEvents = async () => {
     const res = await axios.get(
@@ -24,9 +24,6 @@ const EventsDashboard = () => {
       setEvents(res.data.events);
     }
   };
-
-  const openModal = () => setDeleteModal(true);
-  const closeModal = () => setDeleteModal(false);
 
   const fadeIn = useSpring({
     from: {
@@ -43,7 +40,14 @@ const EventsDashboard = () => {
 
   return (
     <>
-      (<DeleteModal user={user} setDeleteModal={setDeleteModal} setSuccess={setSuccess} /> 
+      {deleteModal && (
+        <DeleteModal
+          user={user}
+          setDeleteModal={setDeleteModal}
+          setSuccess={setSuccess}
+          getEvents={getEvents}
+        />
+      )}
       <animated.div style={fadeIn}>
         <Wrapper>
           <Section>
@@ -65,7 +69,7 @@ const EventsDashboard = () => {
               }}
             >
               Create
-        </CreateButton>
+            </CreateButton>
             {events.length > 0 ? (
               events.map(e => (
                 <EventCard
@@ -75,18 +79,17 @@ const EventsDashboard = () => {
                   setError={setError}
                   getEvents={getEvents}
                   setDeleteModal={setDeleteModal}
-                  openModal={openModal}
                 />
               ))
             ) : (
-                <p
-                  style={{
-                    justifySelf: `center`
-                  }}
-                >
-                  No upcoming events.
-          </p>
-              )}
+              <p
+                style={{
+                  justifySelf: `center`
+                }}
+              >
+                No upcoming events.
+              </p>
+            )}
           </Section>
         </Wrapper>
       </animated.div>

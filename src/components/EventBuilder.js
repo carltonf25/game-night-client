@@ -48,83 +48,82 @@ const EventBuilder = () => {
   return (
     <animated.div style={slideIn}>
       <Wrapper>
-      <Section
-        style={{
-          gridColumn: `2/3`,
-          display: `grid`,
-          gridTemplateColumns: `10% 1fr 10%`,
-          background: `none`,
-          boxShadow: `none`
-        }}
-      >
-        <A
-          style={{
-            color: `#15f5b3`,
-            textTransform: `uppercase`,
-            fontWeight: 600,
-            textDecoration: `none`
-          }}
-          href="/dashboard"
-        >
-          ◀ Back
-        </A>
-        <h1
+        <Section
           style={{
             gridColumn: `2/3`,
-            textAlign: `center`
+            display: `grid`,
+            gridTemplateColumns: `10% 1fr 10%`,
+            background: `none`,
+            boxShadow: `none`
           }}
         >
-          New Event
-        </h1>
-        {error && (
-          <Error>
-            <p>{error}</p>
-          </Error>
-        )}
-        <ChecklistItem
-          item="header_image"
-          setEvent={setEvent}
-          heading="Header Image URL"
-          defaultVal="http://via.placeholder.com/640x360"
-        />
-        <ChecklistItem
-          item="title"
-          setEvent={setEvent}
-          heading="Title"
-          defaultVal="Title"
-        />
-        <ChecklistItem
-          item="description"
-          setEvent={setEvent}
-          heading="Description"
-          defaultVal="Description"
-        />
-        <ChecklistItem
-          item="date"
-          setEvent={setEvent}
-          heading="When?"
-          defaultVal=""
-          type="date"
-        />
-        <ChecklistItem
-          item="location"
-          setEvent={setEvent}
-          heading="Where?"
-          defaultVal=""
-        />
-        <button
-          style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
-          onClick={e => {
-            e.preventDefault();
-            createEvent();
-          }}
-        >
-          Publish
-        </button>
-      </Section>
-    </Wrapper>
+          <A
+            style={{
+              color: `#15f5b3`,
+              textTransform: `uppercase`,
+              fontWeight: 600,
+              textDecoration: `none`
+            }}
+            href="/dashboard"
+          >
+            ◀ Back
+          </A>
+          <h1
+            style={{
+              gridColumn: `2/3`,
+              textAlign: `center`
+            }}
+          >
+            New Event
+          </h1>
+          {error && (
+            <Error>
+              <p>{error}</p>
+            </Error>
+          )}
+          <ChecklistItem
+            item="header_image"
+            setEvent={setEvent}
+            heading="Header Image URL"
+            defaultVal="http://via.placeholder.com/640x360"
+          />
+          <ChecklistItem
+            item="title"
+            setEvent={setEvent}
+            heading="Title"
+            defaultVal="Title"
+          />
+          <ChecklistItem
+            item="description"
+            setEvent={setEvent}
+            heading="Description"
+            defaultVal="Description"
+          />
+          <ChecklistItem
+            item="date"
+            setEvent={setEvent}
+            heading="When?"
+            defaultVal=""
+            type="date"
+          />
+          <ChecklistItem
+            item="location"
+            setEvent={setEvent}
+            heading="Where?"
+            defaultVal=""
+          />
+          <button
+            style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
+            onClick={e => {
+              e.preventDefault();
+              createEvent();
+            }}
+          >
+            Publish
+          </button>
+        </Section>
+      </Wrapper>
     </animated.div>
-    
   );
 };
 

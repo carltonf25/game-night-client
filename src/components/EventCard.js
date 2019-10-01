@@ -22,9 +22,7 @@ const EventCard = ({
   setError,
   getEvents,
   user,
-  setDeleteModal,
-  openModal
-
+  setDeleteModal
 }) => {
   const { id, title, header_image, date, event_code } = event;
 
@@ -36,8 +34,6 @@ const EventCard = ({
       day: "numeric"
     });
   };
-;
-
   const copyCode = () => {
     let copyText = document.querySelector(`#copy-${event_code}`);
     copyText.focus();
@@ -87,13 +83,12 @@ const EventCard = ({
         style={{
           height: `100%`
         }}
-        id={id}    
+        id={id}
         event_code={event_code}
         event={event}
         setDeleteModal={setDeleteModal}
         getEvents={getEvents}
         copyCode={copyCode}
-        openModal={openModal}
       />
     </div>
   );
