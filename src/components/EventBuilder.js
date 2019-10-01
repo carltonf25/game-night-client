@@ -25,8 +25,6 @@ const EventBuilder = () => {
       event
     );
 
-    console.log(res);
-
     if (res.data.created === true) {
       navigate("/dashboard");
     } else {

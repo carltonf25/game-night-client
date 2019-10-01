@@ -63,7 +63,7 @@ const EventCard = ({
       >
         <div
           style={{
-            background: `rgba(100, 100, 100, 0.4)`,
+            background: `rgba(100, 100, 100, 0.6)`,
             width: `100%`,
             height: `100%`
           }}

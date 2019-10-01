@@ -29,8 +29,6 @@ const EventEditor = ({ eventCode }) => {
       event
     );
 
-    console.log(res);
-
     if (res.status === 200) {
       navigate("/dashboard");
     } else {
@@ -40,7 +38,6 @@ const EventEditor = ({ eventCode }) => {
 
   useEffect(() => {
     fetchEvent();
-    console.log(event);
   }, []);
 
   const slideIn = useSpring({
@@ -56,84 +53,83 @@ const EventEditor = ({ eventCode }) => {
 
   return (
     <animated.div style={slideIn}>
-<Wrapper>
-      <Section
-        style={{
-          gridColumn: `2/3`,
-          display: `grid`,
-          gridTemplateColumns: `10% 1fr 10%`,
-          background: `none`,
-          boxShadow: `none`
-        }}
-      >
-        <A
-          style={{
-            color: `#15f5b3`,
-            textTransform: `uppercase`,
-            fontWeight: 600,
-            textDecoration: `none`
-          }}
-          href="/dashboard"
-        >
-          ◀ Back
-        </A>
-        <h1
+      <Wrapper>
+        <Section
           style={{
             gridColumn: `2/3`,
-            textAlign: `center`
+            display: `grid`,
+            gridTemplateColumns: `10% 1fr 10%`,
+            background: `none`,
+            boxShadow: `none`
           }}
         >
-          Edit Event: {event.title}
-        </h1>
-        {error && (
-          <Error>
-            <p>{error}</p>
-          </Error>
-        )}
-        <ChecklistItem
-          item="header_image"
-          setEvent={setEvent}
-          heading="Header Image URL"
-          defaultVal={event.header_image}
-        />
-        <ChecklistItem
-          item="title"
-          setEvent={setEvent}
-          heading="Title"
-          defaultVal={event.title}
-        />
-        <ChecklistItem
-          item="description"
-          setEvent={setEvent}
-          heading="Description"
-          defaultVal={event.description}
-        />
-        <ChecklistItem
-          item="date"
-          setEvent={setEvent}
-          heading="When?"
-          defaultVal={event.date}
-          type="date"
-        />
-        <ChecklistItem
-          item="location"
-          setEvent={setEvent}
-          heading="Where?"
-          defaultVal={event.location}
-        />
-        <button
-          style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
-          onClick={e => {
-            e.preventDefault();
-            updateEvent();
-          }}
-        >
-          Save
-        </button>
-      </Section>
-    </Wrapper>
+          <A
+            style={{
+              color: `#15f5b3`,
+              textTransform: `uppercase`,
+              fontWeight: 600,
+              textDecoration: `none`
+            }}
+            href="/dashboard"
+          >
+            ◀ Back
+          </A>
+          <h1
+            style={{
+              gridColumn: `2/3`,
+              textAlign: `center`
+            }}
+          >
+            Edit Event: {event.title}
+          </h1>
+          {error && (
+            <Error>
+              <p>{error}</p>
+            </Error>
+          )}
+          <ChecklistItem
+            item="header_image"
+            setEvent={setEvent}
+            heading="Header Image URL"
+            defaultVal={event.header_image}
+          />
+          <ChecklistItem
+            item="title"
+            setEvent={setEvent}
+            heading="Title"
+            defaultVal={event.title}
+          />
+          <ChecklistItem
+            item="description"
+            setEvent={setEvent}
+            heading="Description"
+            defaultVal={event.description}
+          />
+          <ChecklistItem
+            item="date"
+            setEvent={setEvent}
+            heading="When?"
+            defaultVal={event.date}
+            type="date"
+          />
+          <ChecklistItem
+            item="location"
+            setEvent={setEvent}
+            heading="Where?"
+            defaultVal={event.location}
+          />
+          <button
+            style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
+            onClick={e => {
+              e.preventDefault();
+              updateEvent();
+            }}
+          >
+            Save
+          </button>
+        </Section>
+      </Wrapper>
     </animated.div>
-    
   );
 };
 
