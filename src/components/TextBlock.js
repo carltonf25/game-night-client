@@ -4,14 +4,7 @@ import {
   EditButton
 } from "./styled-components/EventBuilder.js";
 
-const ChecklistItem = ({
-  item,
-  heading,
-  defaultVal,
-  type,
-  event,
-  setEvent
-}) => {
+const TextBlock = ({ item, heading, defaultVal, setEvent }) => {
   const [editing, setEditing] = useState(false);
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(defaultVal);
@@ -27,29 +20,16 @@ const ChecklistItem = ({
     >
       <h2>{heading}</h2>
       {editing ? (
-        <input
-          type={type || "text"}
-          value={
-            /* allow state to set value to blank*/
-            value !== "" ? value || defaultVal : ""
-          }
+        <textarea
           onChange={e => {
             e.preventDefault();
             setValue(e.target.value);
           }}
-        ></input>
-      ) : item !== "header_image" ? (
-        <p>{value || defaultVal}</p>
+        >
+          {value !== "" ? value || defaultVal : ""}
+        </textarea>
       ) : (
-        <img
-          alt="header"
-          style={{
-            width: `90%`,
-            marginBottom: `1em`,
-            maxHeight: `150px`
-          }}
-          src={value || defaultVal}
-        />
+        <p>{value || defaultVal}</p>
       )}
       <EditButton
         onClick={e => {
@@ -67,4 +47,4 @@ const ChecklistItem = ({
   );
 };
 
-export default ChecklistItem;
+export default TextBlock;

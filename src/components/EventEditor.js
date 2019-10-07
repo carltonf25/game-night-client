@@ -5,6 +5,7 @@ import { Wrapper, Section, Error } from "./styled-components/common";
 import axios from "axios";
 import { A, navigate } from "hookrouter";
 import ChecklistItem from "./ChecklistItem";
+import TextBlock from "./TextBlock";
 
 const EventEditor = ({ eventCode }) => {
   const { user } = useContext(AppContext);
@@ -99,11 +100,11 @@ const EventEditor = ({ eventCode }) => {
             heading="Title"
             defaultVal={event.title}
           />
-          <ChecklistItem
+          <TextBlock
             item="description"
             setEvent={setEvent}
             heading="Description"
-            defaultVal={event.description}
+            defaultVal="Description"
           />
           <ChecklistItem
             item="date"

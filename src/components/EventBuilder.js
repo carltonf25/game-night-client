@@ -5,6 +5,7 @@ import { Wrapper, Section, Error } from "./styled-components/common";
 import axios from "axios";
 import { A, navigate } from "hookrouter";
 import ChecklistItem from "./ChecklistItem";
+import TextBlock from "./TextBlock";
 
 const EventBuilder = () => {
   const { user } = useContext(AppContext);
@@ -91,7 +92,7 @@ const EventBuilder = () => {
             heading="Title"
             defaultVal="Title"
           />
-          <ChecklistItem
+          <TextBlock
             item="description"
             setEvent={setEvent}
             heading="Description"

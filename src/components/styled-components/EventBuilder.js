@@ -12,10 +12,20 @@ export const ChecklistItem = styled.div`
   input {
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
+
+  textarea {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 85%;
+    height: 200px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    background: rgba(250, 250, 250, 0.7);
+    resize: none;
+  }
 `;
 
 export const EditButton = styled.button`
-display: block;
+  display: block;
   border: none;
   font-size: 10px;
   background: none;
