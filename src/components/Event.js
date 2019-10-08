@@ -17,6 +17,7 @@ const Event = ({ eventCode }) => {
   const [modal, setModal] = useState(false);
   const [guests, setGuests] = useState([{ name: "Test" }]);
   const [successFlash, setSuccessFlash] = useState("");
+  const [error, setError] = useState("");
 
   const isLoggedInUser = user.id === event.user_id ? true : false;
 
@@ -47,6 +48,30 @@ const Event = ({ eventCode }) => {
     return date.toLocaleTimeString("default", {
       hour: "numeric"
     });
+  };
+
+  const addNeededItem = async (item) => {
+
+    if (!item.title) {
+      setError("Please provide a title");
+      return;
+    }
+
+    const res = await axios.post(
+      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}/needs?api_token=${user.api_token}`,
+     item 
+    );
+
+    if (res.data.added === true) {
+      fetchEvent();
+      setSuccessFlash(res.data.flash);
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        setSuccessFlash("");
+      }, 5000);
+    } else {
+      setError("Unable to add item");
+    }
   };
 
   const fadeIn = useSpring({
@@ -147,6 +172,18 @@ const Event = ({ eventCode }) => {
                 </div>
               </div>
             </Section>
+            {
+              event.neededItems && (
+            <Section>
+              <h2>Items Needed</h2>
+              <ul>
+                {event.neededItems.map(i => (
+                  <li>{i.title}</li>
+                ))}
+              </ul>
+            </Section>
+              )
+            }
             <Section>
               <h2>Who's going?</h2>
               <GuestTable guests={guests} />
