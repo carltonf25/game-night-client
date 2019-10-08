@@ -8,13 +8,13 @@ const BurgerNav = ({ user, logOut, style, setNavOpen, isNavOpen }) => {
     <animated.div style={style}>
       <NavWrapper>
         <a
-          href="#"
+          href="#0"
           onClick={e => {
             e.preventDefault();
             setNavOpen(!isNavOpen);
           }}
         >
-          ✖
+          ×
         </a>
         {user ? (
           <>

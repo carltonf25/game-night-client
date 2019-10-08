@@ -1,9 +1,6 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { A, navigate } from "hookrouter";
 import ButtonBlock from "./ButtonBlock";
-import axios from "axios";
-import { AppContext } from "../AppContext";
 
 const CardWrapper = styled.div`
   background-color: #fefefe;

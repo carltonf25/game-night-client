@@ -8,7 +8,6 @@ import axios from "axios";
 const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
   const { event, user } = useContext(AppContext);
   const [name, setName] = useState("");
-  const [guests, setGuests] = useState([]);
   const [error, setError] = useState("");
 
   const addGuest = async () => {
@@ -52,7 +51,7 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
   return (
     <Overlay>
       <animated.div className="modal" style={slideIn}>
-        <a onClick={closeModal}>✖</a>
+        <a href="#0" style={{fontSize: `4vw`}} onClick={closeModal}>×</a>
         <div
           style={{
             padding: `20px`,

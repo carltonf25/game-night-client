@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import styled from "styled-components";
 import axios from "axios";
 import { AppContext } from "../AppContext";
 import { navigate } from "hookrouter";

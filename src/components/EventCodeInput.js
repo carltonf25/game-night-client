@@ -10,7 +10,7 @@ const EventCodeInput = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { setEvent, event } = useContext(AppContext);
+  const { setEvent } = useContext(AppContext);
 
   const clearFlashMessages = () => {
     setError("");

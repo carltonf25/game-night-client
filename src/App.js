@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import BurgerNav from "./components/BurgerNav";
 import { AppContext } from "./AppContext";
 import routes from "./router";
-import { useRoutes, useRedirect } from "hookrouter";
+import { useRoutes } from "hookrouter";
 import { useSpring } from "react-spring";
 import "./App.css";
 

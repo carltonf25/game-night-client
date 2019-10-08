@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ReactComponent as Logo } from "../img/text-logo.svg";
-import { A, navigate } from "hookrouter";
+import { A } from "hookrouter";
 import { AppContext } from "../AppContext";
 import { HeaderWrapper } from "./styled-components/Header";
 

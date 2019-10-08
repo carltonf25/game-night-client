@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { AppContext } from "../AppContext";
 import { useSpring, animated } from "react-spring";
 import { Wrapper, Section, Error } from "./styled-components/common";

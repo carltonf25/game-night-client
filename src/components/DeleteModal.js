@@ -44,11 +44,12 @@ const DeleteModal = ({ setSuccess, getEvents, setDeleteModal }) => {
             color: `#15f5b3`,
             position: `absolute`,
             right: `1.5em`,
-            textDecoration: `none`
+            textDecoration: `none`,
+            fontSize: `4vw`,
           }}
           onClick={() => setDeleteModal(false)}
         >
-          ✖
+          ×
         </a>
         <div
           style={{
