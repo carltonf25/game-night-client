@@ -51,7 +51,16 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
   return (
     <Overlay>
       <animated.div className="modal" style={slideIn}>
-        <a href="#0" style={{fontSize: `4vw`}} onClick={closeModal}>×</a>
+        <a
+          href="#0"
+          style={{
+            fontSize: `4em`,
+            textDecoration: `none`
+          }}
+          onClick={closeModal}
+        >
+          ×
+        </a>
         <div
           style={{
             padding: `20px`,

@@ -50,8 +50,7 @@ const Event = ({ eventCode }) => {
     });
   };
 
-  const addNeededItem = async (item) => {
-
+  const addItem = async item => {
     if (!item.title) {
       setError("Please provide a title");
       return;
@@ -59,7 +58,7 @@ const Event = ({ eventCode }) => {
 
     const res = await axios.post(
       `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}/needs?api_token=${user.api_token}`,
-     item 
+      item
     );
 
     if (res.data.added === true) {
@@ -172,18 +171,16 @@ const Event = ({ eventCode }) => {
                 </div>
               </div>
             </Section>
-            {
-              event.neededItems && (
-            <Section>
-              <h2>Items Needed</h2>
-              <ul>
-                {event.neededItems.map(i => (
-                  <li>{i.title}</li>
-                ))}
-              </ul>
-            </Section>
-              )
-            }
+            {event.needs && (
+              <Section>
+                <h2>Items Needed</h2>
+                <ul>
+                  {event.needs.map(i => (
+                    <li>{i.title}</li>
+                  ))}
+                </ul>
+              </Section>
+            )}
             <Section>
               <h2>Who's going?</h2>
               <GuestTable guests={guests} />
