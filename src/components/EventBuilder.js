@@ -15,6 +15,7 @@ const EventBuilder = () => {
     title: "",
     description: "",
     date: "",
+    time: "",
     location: "",
     user_id: user.id,
     header_image: "http://via.placeholder.com/640x360"
@@ -101,9 +102,16 @@ const EventBuilder = () => {
           <ChecklistItem
             item="date"
             setEvent={setEvent}
-            heading="When?"
+            heading="Date?"
             defaultVal=""
             type="date"
+          />
+          <ChecklistItem
+            item="time"
+            setEvent={setEvent}
+            heading="Time?"
+            defaultVal=""
+            type="time"
           />
           <ChecklistItem
             item="location"
