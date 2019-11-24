@@ -9,7 +9,7 @@ const Header = ({ logOut, isNavOpen, setNavOpen }) => {
   return (
     <HeaderWrapper>
       <A href="/">
-        <Logo />
+        <Logo src="gn-logo.png" />
       </A>
       <nav>
         {user ? (

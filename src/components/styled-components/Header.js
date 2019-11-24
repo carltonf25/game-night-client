@@ -39,9 +39,8 @@ export const HeaderWrapper = styled.header`
   .hamburger{
   display: none;
   cursor: pointer;
-  grid-column: 3/-1;
-  margin-right: 2em;
-
+  grid-column: 3;
+  margin-right: 1.2em;
 }
 
 .bar1, .bar2, .bar3 {
