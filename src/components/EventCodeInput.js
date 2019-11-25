@@ -55,51 +55,51 @@ const EventCodeInput = () => {
 
   return (
     <animated.div style={fadeIn}>
-    <Wrapper>
-      <Section style={{ background: `none`, boxShadow: `none` }}>
-        <EventCodeWrapper>
-          {success && (
-            <Success>
-              <p>{success}</p>
-            </Success>
-          )}
-          {error && (
-            <Error>
-              <p>{error}</p>
-            </Error>
-          )}
-          <div
-            className="input-button-wrapper"
-            style={{
-              marginTop: `1em`
-            }}
-          >
-            <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
-              RSVP to an event in seconds. <br />
-              No account required.
-            </h1>
-            <label htmlFor="event-code">Enter event code:</label>
-            <input
-              type="text"
-              name="event-code"
-              onChange={e => {
-                e.preventDefault();
-                setInputValue(e.target.value);
-              }}
-              value={inputValue}
-            />
-            <button
-              onClick={e => {
-                e.preventDefault();
-                getEvent();
+      <Wrapper>
+        <Section style={{ background: `none`, boxShadow: `none` }}>
+          <EventCodeWrapper>
+            {success && (
+              <Success>
+                <p>{success}</p>
+              </Success>
+            )}
+            {error && (
+              <Error>
+                <p>{error}</p>
+              </Error>
+            )}
+            <div
+              className="input-button-wrapper"
+              style={{
+                marginTop: `1em`
               }}
             >
-              Join Event
-            </button>
-          </div>
-        </EventCodeWrapper>
-      </Section>
-    </Wrapper>
+              <h1 style={{ color: `#fefefe`, fontSize: `2.25em` }}>
+                RSVP to an event in seconds. <br />
+                No account required.
+              </h1>
+              <label htmlFor="event-code">Enter event code:</label>
+              <input
+                type="text"
+                name="event-code"
+                onChange={e => {
+                  e.preventDefault();
+                  setInputValue(e.target.value);
+                }}
+                value={inputValue}
+              />
+              <button
+                onClick={e => {
+                  e.preventDefault();
+                  getEvent();
+                }}
+              >
+                Join Event
+              </button>
+            </div>
+          </EventCodeWrapper>
+        </Section>
+      </Wrapper>
     </animated.div>
   );
 };
