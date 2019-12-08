@@ -3,13 +3,14 @@ import { ReactComponent as Logo } from "../img/text-logo.svg";
 import { A } from "hookrouter";
 import { AppContext } from "../AppContext";
 import { HeaderWrapper } from "./styled-components/Header";
+import logo from "../img/gn-logo.png";
 
 const Header = ({ logOut, isNavOpen, setNavOpen }) => {
   const { user } = useContext(AppContext);
   return (
     <HeaderWrapper>
       <A href="/">
-        <Logo src="gn-logo.png" />
+        <img alt="logo" style={{ width: `12em` }} src={logo} />
       </A>
       <nav>
         {user ? (
