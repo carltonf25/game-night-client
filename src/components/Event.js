@@ -44,10 +44,11 @@ const Event = ({ eventCode }) => {
   };
 
   const formatTime = dateString => {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString("default", {
-      hour: "numeric"
-    });
+    let date = dateString;
+    console.log(date);
+    // return dateString.toLocaleTimeString("default", {
+    //   hour: "numeric"
+    // });
   };
 
   const addItem = async item => {
@@ -144,7 +145,7 @@ const Event = ({ eventCode }) => {
                     }}
                   />
                   <h3 style={{ display: `inline`, marginLeft: `1em` }}>
-                    {formatDate(event.date)} at {event.time}
+                    {formatDate(event.date)} at {formatTime(event.time)}
                   </h3>
                 </div>
                 <div style={{ margin: `1em` }}>
