@@ -39,7 +39,7 @@ const EventEditor = ({ eventCode }) => {
 
   useEffect(() => {
     fetchEvent();
-  }, []);
+  }, [event]);
 
   const slideIn = useSpring({
     from: {
@@ -104,7 +104,8 @@ const EventEditor = ({ eventCode }) => {
             item="description"
             setEvent={setEvent}
             heading="Description"
-            defaultVal="Description"
+            defaultVal={event.description}
+            value={event.description}
           />
           <ChecklistItem
             item="date"
