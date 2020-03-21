@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Table } from "./styled-components/Event";
+import { Table } from './styled-components/Event';
 
 const GuestTable = ({ guests }) => (
   <Table

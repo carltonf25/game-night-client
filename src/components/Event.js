@@ -1,45 +1,46 @@
-import React, { useContext, useState, useEffect } from "react";
-import { navigate } from "hookrouter";
-import { useSpring, animated } from "react-spring";
-import axios from "axios";
+import React, { useContext, useState, useEffect } from 'react';
+import { navigate } from 'hookrouter';
+import { useSpring, animated } from 'react-spring';
+import axios from 'axios';
+import dotenv from 'dotenv';
 // components && styles
-import { Section, Success, Wrapper } from "./styled-components/common";
-import { EventWrapper } from "./styled-components/Event";
-import GuestTable from "./GuestTable";
-import RsvpModal from "./RsvpModal";
-import { AppContext } from "../AppContext";
+import { Section, Success, Wrapper } from './styled-components/common';
+import { EventWrapper } from './styled-components/Event';
+import GuestTable from './GuestTable';
+import RsvpModal from './RsvpModal';
+import { AppContext } from '../AppContext';
 // images
-import clock from "../img/clock-icon.svg";
-import locationIcon from "../img/location-icon.svg";
+import clock from '../img/clock-icon.svg';
+import locationIcon from '../img/location-icon.svg';
+let config = dotenv.config();
 
 const Event = ({ eventCode }) => {
   const { user, event, setEvent } = useContext(AppContext);
   const [modal, setModal] = useState(false);
-  const [guests, setGuests] = useState([{ name: "Test" }]);
-  const [successFlash, setSuccessFlash] = useState("");
-  const [error, setError] = useState("");
+  const [guests, setGuests] = useState([{ name: 'Test' }]);
+  const [successFlash, setSuccessFlash] = useState('');
+  const [error, setError] = useState('');
 
   const isLoggedInUser = user.id === event.user_id ? true : false;
+  const prefix = process.env.NODE_ENV === 'development' ? config.DEV_PREFIX : config.PROD_PREFIX;
 
   const fetchEvent = async () => {
-    let res = await axios.get(
-      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}?api_token=${user.api_token}`
-    );
+    let res = await axios.get(`/api/events/${eventCode}`);
 
     if (res.data.event) {
       setEvent(res.data.event);
       setGuests(res.data.event.guests);
     } else {
-      navigate("/");
+      navigate('/');
     }
   };
 
   const formatDate = dateString => {
     const date = new Date(dateString);
-    return date.toLocaleString("default", {
-      month: "short",
-      weekday: "long",
-      day: "numeric"
+    return date.toLocaleString('default', {
+      month: 'short',
+      weekday: 'long',
+      day: 'numeric'
     });
   };
 
@@ -53,12 +54,12 @@ const Event = ({ eventCode }) => {
 
   const addItem = async item => {
     if (!item.title) {
-      setError("Please provide a title");
+      setError('Please provide a title');
       return;
     }
 
     const res = await axios.post(
-      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}/needs?api_token=${user.api_token}`,
+      `/api/events/${eventCode}/needs?api_token=${user.api_token}`,
       item
     );
 
@@ -67,10 +68,10 @@ const Event = ({ eventCode }) => {
       setSuccessFlash(res.data.flash);
       window.scrollTo(0, 0);
       setTimeout(() => {
-        setSuccessFlash("");
+        setSuccessFlash('');
       }, 5000);
     } else {
-      setError("Unable to add item");
+      setError('Unable to add item');
     }
   };
 
@@ -100,7 +101,7 @@ const Event = ({ eventCode }) => {
       <animated.div style={fadeIn}>
         <Wrapper>
           <EventWrapper>
-            {successFlash !== "" && (
+            {successFlash !== '' && (
               <Success style={fadeIn}>
                 <p>{successFlash}</p>
               </Success>
@@ -166,9 +167,7 @@ const Event = ({ eventCode }) => {
               <div className="description-date">
                 <div style={{}}>
                   <h2>About this event:</h2>
-                  <p>
-                    {event.description ? event.description : "placeholder text"}
-                  </p>
+                  <p>{event.description ? event.description : 'placeholder text'}</p>
                 </div>
               </div>
             </Section>

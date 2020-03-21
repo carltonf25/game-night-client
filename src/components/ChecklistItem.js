@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-import {
-  ChecklistItem as Item,
-  EditButton
-} from "./styled-components/EventBuilder.js";
+import React, { useState } from 'react';
+import { ChecklistItem as Item, EditButton } from './styled-components/EventBuilder.js';
 
-const ChecklistItem = ({
-  item,
-  heading,
-  defaultVal,
-  type,
-  event,
-  setEvent
-}) => {
+const ChecklistItem = ({ item, heading, defaultVal, type, event, setEvent }) => {
   const [editing, setEditing] = useState(false);
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(defaultVal);
@@ -28,17 +18,17 @@ const ChecklistItem = ({
       <h2>{heading}</h2>
       {editing ? (
         <input
-          type={type || "text"}
+          type={type || 'text'}
           value={
             /* allow state to set value to blank*/
-            value !== "" ? value || defaultVal : ""
+            value !== '' ? value || defaultVal : ''
           }
           onChange={e => {
             e.preventDefault();
             setValue(e.target.value);
           }}
         ></input>
-      ) : item !== "header_image" ? (
+      ) : item !== 'header_image' ? (
         <p>{value || defaultVal}</p>
       ) : (
         <img
@@ -61,7 +51,7 @@ const ChecklistItem = ({
           setEditing(!editing);
         }}
       >
-        {editing ? "Save" : "Edit"}
+        {editing ? 'Save' : 'Edit'}
       </EditButton>
     </Item>
   );

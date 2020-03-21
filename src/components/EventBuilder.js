@@ -1,24 +1,25 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../AppContext";
-import { useSpring, animated } from "react-spring";
-import { Wrapper, Section, Error } from "./styled-components/common";
-import axios from "axios";
-import { A, navigate } from "hookrouter";
-import ChecklistItem from "./ChecklistItem";
-import TextBlock from "./TextBlock";
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../AppContext';
+import { useSpring, animated } from 'react-spring';
+import { Wrapper, Section, Error } from './styled-components/common';
+import axios from 'axios';
+import { A, navigate } from 'hookrouter';
+import ChecklistItem from './ChecklistItem';
+import TextBlock from './TextBlock';
+import ImageUploader from './ImageUploader';
 
 const EventBuilder = () => {
   const { user } = useContext(AppContext);
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [event, setEvent] = useState({
-    title: "",
-    description: "",
-    date: "",
-    time: "",
-    location: "",
+    title: '',
+    description: '',
+    date: '',
+    time: '',
+    location: '',
     user_id: user.id,
-    header_image: "http://via.placeholder.com/640x360"
+    header_image: 'http://via.placeholder.com/640x360'
   });
 
   const createEvent = async () => {
@@ -28,9 +29,9 @@ const EventBuilder = () => {
     );
 
     if (res.data.created === true) {
-      navigate("/dashboard");
+      navigate('/dashboard');
     } else {
-      setError("Error creating the event.");
+      setError('Error creating the event.');
     }
   };
 
@@ -81,18 +82,14 @@ const EventBuilder = () => {
               <p>{error}</p>
             </Error>
           )}
+          <ImageUploader />
           <ChecklistItem
             item="header_image"
             setEvent={setEvent}
             heading="Header Image URL"
             defaultVal="http://via.placeholder.com/640x360"
           />
-          <ChecklistItem
-            item="title"
-            setEvent={setEvent}
-            heading="Title"
-            defaultVal="Title"
-          />
+          <ChecklistItem item="title" setEvent={setEvent} heading="Title" defaultVal="Title" />
           <TextBlock
             item="description"
             setEvent={setEvent}
@@ -113,12 +110,7 @@ const EventBuilder = () => {
             defaultVal=""
             type="time"
           />
-          <ChecklistItem
-            item="location"
-            setEvent={setEvent}
-            heading="Where?"
-            defaultVal=""
-          />
+          <ChecklistItem item="location" setEvent={setEvent} heading="Where?" defaultVal="" />
           <button
             style={{ gridColumn: `2/3`, width: `25%`, marginLeft: `auto` }}
             onClick={e => {

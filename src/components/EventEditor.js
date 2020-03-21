@@ -1,16 +1,17 @@
-import React, { useState, useContext, useEffect } from "react";
-import { AppContext } from "../AppContext";
-import { useSpring, animated } from "react-spring";
-import { Wrapper, Section, Error } from "./styled-components/common";
-import axios from "axios";
-import { A, navigate } from "hookrouter";
-import ChecklistItem from "./ChecklistItem";
-import TextBlock from "./TextBlock";
+import React, { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../AppContext';
+import { useSpring, animated } from 'react-spring';
+import { Wrapper, Section, Error } from './styled-components/common';
+import axios from 'axios';
+import { A, navigate } from 'hookrouter';
+import ChecklistItem from './ChecklistItem';
+import TextBlock from './TextBlock';
+import ImageUploader from './ImageUploader';
 
 const EventEditor = ({ eventCode }) => {
   const { user } = useContext(AppContext);
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [event, setEvent] = useState({});
 
   const fetchEvent = async () => {
@@ -21,7 +22,7 @@ const EventEditor = ({ eventCode }) => {
     if (res.data.event) {
       setEvent(res.data.event);
     } else {
-      navigate("/dashboard");
+      navigate('/dashboard');
     }
   };
   const updateEvent = async () => {
@@ -31,9 +32,9 @@ const EventEditor = ({ eventCode }) => {
     );
 
     if (res.status === 200) {
-      navigate("/dashboard");
+      navigate('/dashboard');
     } else {
-      setError("Error updating the event.");
+      setError('Error updating the event.');
     }
   };
 
@@ -88,6 +89,7 @@ const EventEditor = ({ eventCode }) => {
               <p>{error}</p>
             </Error>
           )}
+          <ImageUploader />
           <ChecklistItem
             item="header_image"
             setEvent={setEvent}

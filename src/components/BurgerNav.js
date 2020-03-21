@@ -1,7 +1,7 @@
-import React from "react";
-import { NavWrapper } from "./styled-components/BurgerNav";
-import { A } from "hookrouter";
-import { animated } from "react-spring";
+import React from 'react';
+import { NavWrapper } from './styled-components/BurgerNav';
+import { A } from 'hookrouter';
+import { animated } from 'react-spring';
 
 const BurgerNav = ({ user, logOut, style, setNavOpen, isNavOpen }) => {
   return (

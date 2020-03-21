@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import {
-  ChecklistItem as Item,
-  EditButton
-} from "./styled-components/EventBuilder.js";
+import React, { useState } from 'react';
+import { ChecklistItem as Item, EditButton } from './styled-components/EventBuilder.js';
 
 const TextBlock = ({ item, heading, defaultVal, setEvent }) => {
   const [editing, setEditing] = useState(false);
@@ -26,7 +23,7 @@ const TextBlock = ({ item, heading, defaultVal, setEvent }) => {
             setValue(e.target.value);
           }}
         >
-          {value !== "" ? value || defaultVal : ""}
+          {value !== '' ? value || defaultVal : ''}
         </textarea>
       ) : (
         <p>{value || defaultVal}</p>
@@ -41,7 +38,7 @@ const TextBlock = ({ item, heading, defaultVal, setEvent }) => {
           setEditing(!editing);
         }}
       >
-        {editing ? "Save" : "Edit"}
+        {editing ? 'Save' : 'Edit'}
       </EditButton>
     </Item>
   );

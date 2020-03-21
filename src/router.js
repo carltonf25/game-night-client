@@ -1,5 +1,6 @@
 import React from "react";
 
+import ApiTest from "./components/ApiTest";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Event from "./components/Event";
@@ -9,6 +10,7 @@ import EventEditor from "./components/EventEditor";
 import EventCodeInput from "./components/EventCodeInput";
 
 const routes = {
+  "/api-test": () => <ApiTest />,
   "/": () => <EventCodeInput />,
   "/events/:eventCode": ({ eventCode }) => <Event eventCode={eventCode} />,
   "/events/:eventCode/edit": ({ eventCode }) => <EventEditor eventCode={eventCode} />,

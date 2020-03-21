@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { ReactComponent as Logo } from "../img/text-logo.svg";
-import { A } from "hookrouter";
-import { AppContext } from "../AppContext";
-import { HeaderWrapper } from "./styled-components/Header";
-import logo from "../img/gn-logo.png";
+import React, { useContext } from 'react';
+import { ReactComponent as Logo } from '../img/text-logo.svg';
+import { A } from 'hookrouter';
+import { AppContext } from '../AppContext';
+import { HeaderWrapper } from './styled-components/Header';
+import logo from '../img/gn-logo.png';
 
 const Header = ({ logOut, isNavOpen, setNavOpen }) => {
   const { user } = useContext(AppContext);

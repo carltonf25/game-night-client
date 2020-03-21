@@ -1,37 +1,35 @@
-import React, { useState, useContext } from "react";
-import { Error, Success, Wrapper, Section } from "./styled-components/common";
-import { EventCodeWrapper } from "./styled-components/EventCodePage";
-import { AppContext } from "../AppContext";
-import { navigate } from "hookrouter";
-import { useSpring, animated } from "react-spring";
-require("dotenv").config();
+import React, { useState, useContext } from 'react';
+import { Error, Success, Wrapper, Section } from './styled-components/common';
+import { EventCodeWrapper } from './styled-components/EventCodePage';
+import { AppContext } from '../AppContext';
+import { navigate } from 'hookrouter';
+import { useSpring, animated } from 'react-spring';
+require('dotenv').config();
 
 const EventCodeInput = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const { setEvent } = useContext(AppContext);
 
   const clearFlashMessages = () => {
-    setError("");
-    setSuccess("");
+    setError('');
+    setSuccess('');
   };
   const getEvent = async () => {
     clearFlashMessages();
     let eventCode = inputValue;
-    if (eventCode === "") {
-      setError("Please enter a code");
+    if (eventCode === '') {
+      setError('Please enter a code');
     }
 
-    let res = await fetch(
-      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`
-    );
+    let res = await fetch(`https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`);
 
     let eventData = await res.json();
     if (eventData.error) {
       // no event found. set error
       setError(eventData.error);
-    } else if (inputValue === "") {
+    } else if (inputValue === '') {
       // event input blank. set error.
       setError(`Please enter an event code.`);
     } else {

@@ -1,20 +1,20 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../AppContext";
-import { Error } from "./styled-components/common";
-import { useSpring, animated } from "react-spring";
-import { Overlay } from "./styled-components/RsvpModal";
-import axios from "axios";
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../AppContext';
+import { Error } from './styled-components/common';
+import { useSpring, animated } from 'react-spring';
+import { Overlay } from './styled-components/RsvpModal';
+import axios from 'axios';
 
 const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
   const { event, user } = useContext(AppContext);
-  const [name, setName] = useState("");
-  const [error, setError] = useState("");
+  const [name, setName] = useState('');
+  const [error, setError] = useState('');
 
   const addGuest = async () => {
     let data = { guests: [{ name: name }] };
 
     if (!name) {
-      setError("Please provide a name");
+      setError('Please provide a name');
       return;
     }
 
@@ -29,10 +29,10 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
       closeModal();
       window.scrollTo(0, 0);
       setTimeout(() => {
-        setSuccessFlash("");
+        setSuccessFlash('');
       }, 5000);
     } else {
-      setError("Unable to add guest");
+      setError('Unable to add guest');
     }
   };
 
@@ -75,12 +75,7 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
           )}
           <form>
             <label for="name">Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
+            <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
             <button
               onClick={e => {
                 e.preventDefault();

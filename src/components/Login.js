@@ -1,40 +1,37 @@
-import React, { useState, useContext } from "react";
-import axios from "axios";
-import { AppContext } from "../AppContext";
-import { navigate } from "hookrouter";
-import { Section, Wrapper, Error } from "./styled-components/common";
-import { Form } from "./styled-components/Form"
-require("dotenv").config();
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import { AppContext } from '../AppContext';
+import { navigate } from 'hookrouter';
+import { Section, Wrapper, Error } from './styled-components/common';
+import { Form } from './styled-components/Form';
+require('dotenv').config();
 
 const Login = () => {
-  const [error, setError] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { setUser } = useContext(AppContext);
 
   const logIn = async (email, password) => {
     // check that values were entered
-    if (email === "") {
+    if (email === '') {
       setError(`Please enter an email address`);
-    } else if (password === "") {
+    } else if (password === '') {
       setError(`A password is required`);
     }
 
-    const res = await axios.post(
-      `https://damp-falls-69999.herokuapp.com/auth/login`,
-      {
-        email,
-        password
-      }
-    );
+    const res = await axios.post(`/auth/login`, {
+      email,
+      password
+    });
 
     if (res.data.error) {
       setError(res.data.error);
     } else if (res.data.user) {
       let userString = JSON.stringify(res.data.user);
-      localStorage.setItem("user", userString);
+      localStorage.setItem('user', userString);
       setUser(res.data.user);
-      navigate("/dashboard");
+      navigate('/dashboard');
     }
   };
 

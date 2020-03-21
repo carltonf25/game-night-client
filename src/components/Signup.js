@@ -1,51 +1,48 @@
-import React, { useState, useContext } from "react";
-import axios from "axios";
-import { AppContext } from "../AppContext";
-import { Section, Wrapper, Error, Success } from "./styled-components/common";
-import { Form } from "./styled-components/Form";
-import { navigate } from "hookrouter";
-require("dotenv").config();
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import { AppContext } from '../AppContext';
+import { Section, Wrapper, Error, Success } from './styled-components/common';
+import { Form } from './styled-components/Form';
+import { navigate } from 'hookrouter';
+require('dotenv').config();
 
 const Signup = () => {
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { setUser } = useContext(AppContext);
 
   const clearFlashMessages = () => {
-    setError("");
-    setSuccess("");
+    setError('');
+    setSuccess('');
   };
 
   const handleSubmit = async (email, password) => {
     clearFlashMessages();
     // check that values are entered
-    if (email === "") {
+    if (email === '') {
       setError(`Please enter an email address`);
-    } else if (password === "") {
+    } else if (password === '') {
       setError(`A password is required`);
     }
 
     // valid email and password, submit data to signup
-    let res = await axios.post(
-      `https://damp-falls-69999.herokuapp.com/signup`,
-      {
-        email,
-        password
-      }
-    );
+    let res = await axios.post(`https://damp-falls-69999.herokuapp.com/signup`, {
+      email,
+      password
+    });
 
     if (res.data.error) {
       setError(res.data.error);
     } else if (res.data.user) {
       let userString = JSON.stringify(res.data.user);
-      localStorage.setItem("user", userString);
+      localStorage.setItem('user', userString);
       setUser(res.data.user);
       // flash success message and log into dashboard page
       setSuccess(`Account successfully created! Logging you in..`);
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate('/dashboard');
       }, 1500);
     }
   };

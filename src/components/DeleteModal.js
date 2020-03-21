@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-import { AppContext } from "../AppContext";
-import { Error } from "./styled-components/common";
-import { useSpring, animated } from "react-spring";
-import { Overlay } from "./styled-components/RsvpModal";
-import axios from "axios";
+import React, { useContext, useState } from 'react';
+import { AppContext } from '../AppContext';
+import { Error } from './styled-components/common';
+import { useSpring, animated } from 'react-spring';
+import { Overlay } from './styled-components/RsvpModal';
+import axios from 'axios';
 
 const DeleteModal = ({ setSuccess, getEvents, setDeleteModal }) => {
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const { event, user } = useContext(AppContext);
   const deleteEvent = async () => {
     let res = await axios.delete(
@@ -18,7 +18,7 @@ const DeleteModal = ({ setSuccess, getEvents, setDeleteModal }) => {
       setSuccess(`Successfully deleted event.`);
       window.scrollTo(0, 0);
     } else {
-      setError("Unable to delete event");
+      setError('Unable to delete event');
     }
   };
 
@@ -45,7 +45,7 @@ const DeleteModal = ({ setSuccess, getEvents, setDeleteModal }) => {
             position: `absolute`,
             right: `1.5em`,
             textDecoration: `none`,
-            fontSize: `4vw`,
+            fontSize: `4vw`
           }}
           onClick={() => setDeleteModal(false)}
         >
@@ -57,9 +57,7 @@ const DeleteModal = ({ setSuccess, getEvents, setDeleteModal }) => {
             margin: `0 auto`
           }}
         >
-          <h2 style={{ marginTop: `1em` }}>
-            Are you sure you want to delete {event.title}?
-          </h2>
+          <h2 style={{ marginTop: `1em` }}>Are you sure you want to delete {event.title}?</h2>
           {error && (
             <Error>
               <p>{error}</p>
@@ -72,10 +70,7 @@ const DeleteModal = ({ setSuccess, getEvents, setDeleteModal }) => {
           >
             Yes. Delete it.
           </button>
-          <button
-            style={{ marginLeft: `1em` }}
-            onClick={() => setDeleteModal(false)}
-          >
+          <button style={{ marginLeft: `1em` }} onClick={() => setDeleteModal(false)}>
             Nevermind!
           </button>
         </div>

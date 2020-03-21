@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import ButtonBlock from "./ButtonBlock";
+import React from 'react';
+import styled from 'styled-components';
+import ButtonBlock from './ButtonBlock';
 
 const CardWrapper = styled.div`
   background-color: #fefefe;
@@ -13,22 +13,15 @@ const CardWrapper = styled.div`
   grid-column: 2/3;
 `;
 
-const EventCard = ({
-  event,
-  setSuccess,
-  setError,
-  getEvents,
-  user,
-  setDeleteModal
-}) => {
+const EventCard = ({ event, setSuccess, setError, getEvents, user, setDeleteModal }) => {
   const { id, title, header_image, date, event_code } = event;
 
   const formatDate = dateString => {
     const date = new Date(dateString);
-    return date.toLocaleString("default", {
-      month: "short",
-      weekday: "long",
-      day: "numeric"
+    return date.toLocaleString('default', {
+      month: 'short',
+      weekday: 'long',
+      day: 'numeric'
     });
   };
   const copyCode = () => {
@@ -36,7 +29,7 @@ const EventCard = ({
     copyText.focus();
     copyText.select();
 
-    document.execCommand("copy");
+    document.execCommand('copy');
     setSuccess(`Event code copied to clipboard`);
 
     setTimeout(() => {
@@ -68,11 +61,7 @@ const EventCard = ({
           <div style={{ padding: `1.5em` }}>
             <h3>{title}</h3>
             <h4>{formatDate(date)}</h4>
-            <input
-              id={`copy-${event_code}`}
-              value={event_code}
-              style={{ opacity: 0 }}
-            />
+            <input id={`copy-${event_code}`} value={event_code} style={{ opacity: 0 }} />
           </div>
         </div>
       </CardWrapper>
