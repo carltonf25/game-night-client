@@ -4,14 +4,18 @@ import { Error } from './styled-components/common';
 import { useSpring, animated } from 'react-spring';
 import { Overlay } from './styled-components/RsvpModal';
 import axios from 'axios';
+require('dotenv').config();
 
 const DeleteModal = ({ setSuccess, getEvents, setDeleteModal }) => {
   const [error, setError] = useState('');
   const { event, user } = useContext(AppContext);
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
+
   const deleteEvent = async () => {
-    let res = await axios.delete(
-      `https://damp-falls-69999.herokuapp.com/api/events/${event.id}?api_token=${user.api_token}`
-    );
+    let res = await axios.delete(`${prefix}/api/events/${event.id}?api_token=${user.api_token}`);
     if (res.data.success === true) {
       getEvents();
       setDeleteModal(false);

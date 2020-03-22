@@ -11,6 +11,10 @@ const EventCodeInput = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const { setEvent } = useContext(AppContext);
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const clearFlashMessages = () => {
     setError('');
@@ -23,7 +27,7 @@ const EventCodeInput = () => {
       setError('Please enter a code');
     }
 
-    let res = await fetch(`https://damp-falls-69999.herokuapp.com/api/events/${eventCode}`);
+    let res = await fetch(`${prefix}/api/events/${eventCode}`);
 
     let eventData = await res.json();
     if (eventData.error) {

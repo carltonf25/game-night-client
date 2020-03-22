@@ -7,6 +7,7 @@ import axios from 'axios';
 import { AppContext } from '../AppContext';
 import { navigate } from 'hookrouter';
 import { animated, useSpring } from 'react-spring';
+require('dotenv').config();
 
 const EventsDashboard = () => {
   const { user } = useContext(AppContext);
@@ -14,9 +15,15 @@ const EventsDashboard = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
   const [deleteModal, setDeleteModal] = useState(false);
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const getEvents = async () => {
-    const res = await axios.get(`/api/users/${user.id}/events?api_token=${user.api_token}`);
+    const res = await axios.get(
+      `${prefix}/api/users/${user.id}/events?api_token=${user.api_token}`
+    );
 
     if (res.data.events) {
       setEvents(res.data.events);

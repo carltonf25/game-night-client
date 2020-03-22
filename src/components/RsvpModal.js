@@ -4,11 +4,16 @@ import { Error } from './styled-components/common';
 import { useSpring, animated } from 'react-spring';
 import { Overlay } from './styled-components/RsvpModal';
 import axios from 'axios';
+require('dotenv').config();
 
 const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
   const { event, user } = useContext(AppContext);
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const addGuest = async () => {
     let data = { guests: [{ name: name }] };
@@ -19,7 +24,7 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
     }
 
     const res = await axios.post(
-      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}/guests?api_token=${user.api_token}`,
+      `${prefix}/api/events/${event.event_code}/guests?api_token=${user.api_token}`,
       data
     );
 

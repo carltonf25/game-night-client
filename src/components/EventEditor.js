@@ -7,17 +7,20 @@ import { A, navigate } from 'hookrouter';
 import ChecklistItem from './ChecklistItem';
 import TextBlock from './TextBlock';
 import ImageUploader from './ImageUploader';
+require('dotenv').config();
 
 const EventEditor = ({ eventCode }) => {
   const { user } = useContext(AppContext);
 
   const [error, setError] = useState('');
   const [event, setEvent] = useState({});
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const fetchEvent = async () => {
-    const res = await axios.get(
-      `https://damp-falls-69999.herokuapp.com/api/events/${eventCode}?api_token=${user.api_token}`
-    );
+    const res = await axios.get(`${prefix}/api/events/${eventCode}?api_token=${user.api_token}`);
 
     if (res.data.event) {
       setEvent(res.data.event);
@@ -27,7 +30,7 @@ const EventEditor = ({ eventCode }) => {
   };
   const updateEvent = async () => {
     const res = await axios.put(
-      `https://damp-falls-69999.herokuapp.com/api/events/${event.event_code}?api_token=${user.api_token}`,
+      `${prefix}/api/events/${event.event_code}?api_token=${user.api_token}`,
       event
     );
 

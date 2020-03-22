@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
 import { navigate } from 'hookrouter';
@@ -11,6 +11,10 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUser } = useContext(AppContext);
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const logIn = async (email, password) => {
     // check that values were entered
@@ -20,7 +24,7 @@ const Login = () => {
       setError(`A password is required`);
     }
 
-    const res = await axios.post(`/auth/login`, {
+    const res = await axios.post(`${prefix}/auth/login`, {
       email,
       password
     });
@@ -34,6 +38,11 @@ const Login = () => {
       navigate('/dashboard');
     }
   };
+
+  useEffect(() => {
+    console.log(prefix);
+    console.log(process.env.NODE_ENV);
+  }, []);
 
   return (
     <Wrapper>

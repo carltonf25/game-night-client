@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { AppContext } from '../AppContext';
 import { Section, Wrapper, Error, Success } from './styled-components/common';
@@ -12,6 +12,10 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUser } = useContext(AppContext);
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const clearFlashMessages = () => {
     setError('');
@@ -28,7 +32,7 @@ const Signup = () => {
     }
 
     // valid email and password, submit data to signup
-    let res = await axios.post(`https://damp-falls-69999.herokuapp.com/signup`, {
+    let res = await axios.post(`${prefix}/signup`, {
       email,
       password
     });

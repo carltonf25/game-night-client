@@ -6,7 +6,7 @@ import axios from 'axios';
 import { A, navigate } from 'hookrouter';
 import ChecklistItem from './ChecklistItem';
 import TextBlock from './TextBlock';
-import ImageUploader from './ImageUploader';
+require('dotenv').config();
 
 const EventBuilder = () => {
   const { user } = useContext(AppContext);
@@ -21,12 +21,13 @@ const EventBuilder = () => {
     user_id: user.id,
     header_image: 'http://via.placeholder.com/640x360'
   });
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const createEvent = async () => {
-    const res = await axios.post(
-      `https://damp-falls-69999.herokuapp.com/api/events?api_token=${user.api_token}`,
-      event
-    );
+    const res = await axios.post(`${prefix}/api/events?api_token=${user.api_token}`, event);
 
     if (res.data.created === true) {
       navigate('/dashboard');
@@ -82,7 +83,6 @@ const EventBuilder = () => {
               <p>{error}</p>
             </Error>
           )}
-          <ImageUploader />
           <ChecklistItem
             item="header_image"
             setEvent={setEvent}

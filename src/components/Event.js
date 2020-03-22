@@ -25,7 +25,7 @@ const Event = ({ eventCode }) => {
   const prefix = process.env.NODE_ENV === 'development' ? config.DEV_PREFIX : config.PROD_PREFIX;
 
   const fetchEvent = async () => {
-    let res = await axios.get(`/api/events/${eventCode}`);
+    let res = await axios.get(`${prefix}/api/events/${eventCode}`);
 
     if (res.data.event) {
       setEvent(res.data.event);
