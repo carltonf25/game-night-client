@@ -6,7 +6,7 @@ import { Overlay } from './styled-components/RsvpModal';
 import axios from 'axios';
 require('dotenv').config();
 
-const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
+const RsvpModal = ({ setGuests, closeModal, setSuccessFlash, modal }) => {
   const { event, user } = useContext(AppContext);
   const [name, setName] = useState('');
   const [error, setError] = useState('');
@@ -28,8 +28,10 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
       data
     );
 
+    const resData = await res.json();
+
     if (res.data.added === true) {
-      fetchEvent();
+      setGuests(res.data.guests);
       setSuccessFlash(res.data.flash);
       closeModal();
       window.scrollTo(0, 0);

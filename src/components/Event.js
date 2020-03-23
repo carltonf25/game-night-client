@@ -12,24 +12,30 @@ import { AppContext } from '../AppContext';
 // images
 import clock from '../img/clock-icon.svg';
 import locationIcon from '../img/location-icon.svg';
-let config = dotenv.config();
+require('dotenv').config();
 
 const Event = ({ eventCode }) => {
-  const { user, event, setEvent } = useContext(AppContext);
+  const { user } = useContext(AppContext);
+  const [event, setEvent] = useState({});
   const [modal, setModal] = useState(false);
-  const [guests, setGuests] = useState([{ name: 'Test' }]);
   const [successFlash, setSuccessFlash] = useState('');
   const [error, setError] = useState('');
+  const [guests, setGuests] = useState([]);
 
   const isLoggedInUser = user.id === event.user_id ? true : false;
-  const prefix = process.env.NODE_ENV === 'development' ? config.DEV_PREFIX : config.PROD_PREFIX;
+  const prefix =
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_DEV_PREFIX
+      : process.env.REACT_APP_PROD_PREFIX;
 
   const fetchEvent = async () => {
-    let res = await axios.get(`${prefix}/api/events/${eventCode}`);
+    let eventPromise = await axios.get(`${prefix}/api/events/${eventCode}`);
+    let guestsPromise = await axios.get(`${prefix}/api/events/${eventCode}/guests`);
+    let res = await Promise.all([eventPromise, guestsPromise]);
 
-    if (res.data.event) {
-      setEvent(res.data.event);
-      setGuests(res.data.event.guests);
+    if (res[0].status === 200) {
+      setEvent(res[0].data.event);
+      setGuests(res[1].data.guests);
     } else {
       navigate('/');
     }
