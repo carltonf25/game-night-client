@@ -9,38 +9,41 @@ import { useSpring } from 'react-spring';
 import './App.css';
 
 const App = () => {
-  const routeResult = useRoutes(routes);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || false);
+	const routeResult = useRoutes(routes);
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || false);
 
-  const [isNavOpen, setNavOpen] = useState(false);
-  const navAnimation = useSpring({
-    display: isNavOpen ? `` : `none`,
-    transform: isNavOpen ? `translate3d(0,0,0)` : `translate3d(100%,0, 0)`
-  });
+	const [event, setEvent] = useState({});
+	const [guests, setGuests] = useState({});
 
-  const logOut = () => {
-    localStorage.removeItem('user');
-    setUser(false);
-  };
+	const [isNavOpen, setNavOpen] = useState(false);
+	const navAnimation = useSpring({
+		display: isNavOpen ? `` : `none`,
+		transform: isNavOpen ? `translate3d(0,0,0)` : `translate3d(100%,0, 0)`
+	});
 
-  useEffect(() => {}, []);
+	const logOut = () => {
+		localStorage.removeItem('user');
+		setUser(false);
+	};
 
-  return (
-    <AppContext.Provider value={{ user, setUser }}>
-      <BurgerNav
-        logOut={() => logOut()}
-        user={user}
-        style={navAnimation}
-        setNavOpen={setNavOpen}
-        isNavOpen={isNavOpen}
-      />
-      <div className="App">
-        <Header logOut={() => logOut()} setNavOpen={setNavOpen} isNavOpen={isNavOpen} />
-        {routeResult}
-        <Footer />
-      </div>
-    </AppContext.Provider>
-  );
+	useEffect(() => {}, []);
+
+	return (
+		<AppContext.Provider value={{ user, setUser, event, setEvent, guests, setGuests }}>
+			<BurgerNav
+				logOut={() => logOut()}
+				user={user}
+				style={navAnimation}
+				setNavOpen={setNavOpen}
+				isNavOpen={isNavOpen}
+			/>
+			<div className="App">
+				<Header logOut={() => logOut()} setNavOpen={setNavOpen} isNavOpen={isNavOpen} />
+				{routeResult}
+				<Footer />
+			</div>
+		</AppContext.Provider>
+	);
 };
 
 export default App;
