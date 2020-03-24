@@ -26,10 +26,12 @@ const Event = ({ eventCode }) => {
 	const [guests, setGuests] = useState([]);
 
 	// check to see if visitor is already a guest, retrieve their info if so
-	const localGuests = JSON.parse(localStorage.getItem('guests'));
+	const localGuests = JSON.parse(localStorage.getItem('guests')) || [];
 	const filteredLocalGuests = localGuests.filter(g => g.pivot.event_id === event.id);
 
-	let guest = filteredLocalGuests[0] ? filteredLocalGuests[0] : null;
+	let guest = filteredLocalGuests[0]
+		? filteredLocalGuests[0]
+		: { name: 'anonymous', id: 195, user_id: -1 };
 
 	const isLoggedInUser = user.id === event.user_id ? true : false;
 	const prefix =

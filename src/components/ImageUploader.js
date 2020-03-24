@@ -7,7 +7,7 @@ const ImageUploader = ({ setEvent }) => {
 	const [checked, setChecked] = useState(false);
 	const [editing, setEditing] = useState(false);
 
-	let bgColor = checked ? `#c7f5df` : `#e2e93c`;
+	let bgColor = checked ? `#c7f5df` : `#e2e9ec`;
 
 	const uploadImage = async e => {
 		const files = e.target.files;
