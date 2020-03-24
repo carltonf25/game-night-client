@@ -31,7 +31,12 @@ const RsvpModal = ({ fetchEvent, closeModal, setSuccessFlash, modal }) => {
 		);
 
 		if (res.data.added === true) {
+			let guest = res.data.guest;
+			let localGuests = JSON.parse(localStorage.getItem('guests')) || [];
+			let updatedLocalGuests = JSON.stringify([...localGuests, guest]);
+
 			fetchEvent();
+			localStorage.setItem('guests', updatedLocalGuests);
 			setGuests(res.data.guests);
 			setSuccessFlash(res.data.flash);
 			closeModal();

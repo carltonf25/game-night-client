@@ -8,6 +8,7 @@ import { Section, Success, Wrapper } from './styled-components/common';
 import { EventWrapper } from './styled-components/Event';
 import GuestTable from './GuestTable';
 import RsvpModal from './RsvpModal';
+import CommentsModule from './CommentsModule';
 import { AppContext } from '../AppContext';
 // images
 import clock from '../img/clock-icon.svg';
@@ -23,6 +24,12 @@ const Event = ({ eventCode }) => {
 	const [successFlash, setSuccessFlash] = useState('');
 	const [error, setError] = useState('');
 	const [guests, setGuests] = useState([]);
+
+	// check to see if visitor is already a guest, retrieve their info if so
+	const localGuests = JSON.parse(localStorage.getItem('guests'));
+	const filteredLocalGuests = localGuests.filter(g => g.pivot.event_id === event.id);
+
+	let guest = filteredLocalGuests[0] ? filteredLocalGuests[0] : null;
 
 	const isLoggedInUser = user.id === event.user_id ? true : false;
 	const prefix =
@@ -192,6 +199,9 @@ const Event = ({ eventCode }) => {
 						<Section>
 							<h2>Who's going?</h2>
 							<GuestTable guests={guests} />
+						</Section>
+						<Section>
+							<CommentsModule guest={guest} fetchEvent={fetchEvent} eventCode={eventCode} />
 						</Section>
 					</EventWrapper>
 				</Wrapper>
