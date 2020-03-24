@@ -15,7 +15,7 @@ const ImageUploader = ({ setEvent }) => {
 		data.append('file', files[0]);
 		data.append('upload_preset', 'game-night');
 		setLoading(true);
-		const res = await fetch('http://api.cloudinary.com/v1_1/dyimkojzn/image/upload', {
+		const res = await fetch('https://api.cloudinary.com/v1_1/dyimkojzn/image/upload', {
 			method: 'POST',
 			body: data
 		});
