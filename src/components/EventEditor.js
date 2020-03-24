@@ -43,7 +43,7 @@ const EventEditor = ({ eventCode }) => {
 
 	useEffect(() => {
 		fetchEvent();
-	}, [event]);
+	}, []);
 
 	const slideIn = useSpring({
 		from: {
